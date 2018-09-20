@@ -37,26 +37,19 @@ export default React.createClass({
       record: record,
     }, () => {
       Utils.ajaxData({
-        url: '/modules/manage/userAuth/userBankCardDetail.htm',      
+        url: '/user/auth/getUserAuthDetail.htm',      
         data: {
-          userId: record.userId
+          userId: record.id
         },
         callback: (result) => {
-          if (result.code == 200) {
-            var dataForm = {};
-            dataForm.bankCardNo = result.data.bankCardNo;
-            dataForm.bankCode = result.data.bankCode;
-            dataForm.bankName = result.data.bankName;
-            dataForm.createTime = result.data.createTime;
-            dataForm.bankUserName = result.data.bankUserName;
-          
-            this.refs.ReviewWin.refs.Tab1.setFieldsValue(dataForm);
+          if (result.code == 200) {          
+            this.refs.ReviewWin.refs.Tab1.setFieldsValue(result.data.bankInfo);
+            this.refs.ReviewWin.refs.Tab2.setFieldsValue(result.data.policyInfo);
             this.setState({
               recordSoure: result.data
             })
-          }else if(result.code == 400){
-            var dataForm = {};          
-            this.refs.ReviewWin.refs.Tab1.setFieldsValue(dataForm);
+          }else if(result.code == 400){       
+            this.refs.ReviewWin.refs.Tab1.setFieldsValue(result.data);
             this.setState({
               recordSoure: result.data
             })

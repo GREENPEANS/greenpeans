@@ -53,33 +53,10 @@ export default React.createClass({
       title: title,
       record: record,
     }, () => {
-      Utils.ajaxData({
-        url: '/modules/manage/cl/cluser/userDetail.htm',
-        data: {
-          userId: record.id
-        },
-        callback: (result) => {
-          console.log(record.id);
-          if (result.code == 200) {
-            var dataForm = {};
-            dataForm.userPhone = result.data.userPhone;
-            dataForm.userRealName = result.data.userRealName;
-            dataForm.idNo = result.data.idNo;
-            dataForm.loginName = result.data.loginName;
-            dataForm.registTime = result.data.registTime;
-            dataForm.registerClient = result.data.registerClient; 
-            dataForm.registerCoordinate = result.data.registerCoordinate;
-            dataForm.channelId = result.data.channelId;
-            dataForm.channelName = result.data.channelName;                  
-           
-            //console.log(result.data);
-            this.refs.ReviewWin.refs.Tab1.setFieldsValue(dataForm);
-            this.setState({
-              recordSoure: result.data
-            })
-          }
-        }
-      });
+      this.refs.ReviewWin.refs.Tab1.setFieldsValue(record);
+      this.setState({
+        recordSoure: result.data
+      })
     });
   },
   //打开分配弹窗
@@ -250,10 +227,10 @@ export default React.createClass({
     const hasSelected = selectedRowKeys.length > 0;
     var columns = [{
       title: '手机号',
-      dataIndex: "phone",
+      dataIndex: "loginName",
     }, {
-      title: '用户姓名',
-      dataIndex: "userName",
+      title: '用户真实姓名',
+      dataIndex: "userRealName",
     }, {
       title: '身份证号码',
       dataIndex: 'idNo'

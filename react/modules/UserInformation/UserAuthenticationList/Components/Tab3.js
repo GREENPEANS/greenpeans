@@ -25,12 +25,12 @@ var Tab3 = React.createClass({
   componentWillReceiveProps(nextProps){
     if(nextProps.activeKey == '3'){
      
-      this.fetch();
+     // this.fetch();
     }
   },
   componentDidMount(){
     
-    this.fetch();
+   // this.fetch();
   },
   fetch(params = {}) {
     var me = this;

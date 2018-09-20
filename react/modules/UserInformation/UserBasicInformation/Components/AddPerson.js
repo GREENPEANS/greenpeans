@@ -28,65 +28,44 @@ var AddUserWin = React.createClass({
   componentWillReceiveProps(nextProps){  
     this.setState({
       id: nextProps.selectRecord.id,
-      imgPath :nextProps.record&& nextProps.record.imgPath
     })   
   },
   handleCancel() {
     this.props.form.resetFields();
     this.props.hideModal();
-    this.setState({
-      deviceImg:''
-    })
+  
   },
   handleOk(e) {
-    e.preventDefault();
+   // e.preventDefault();
     let me = this;
     let props = me.props;
     let userId = this.state.id;
-    let url = "/modules/manage/cl/cluser/userSinglePush.htm";
-    this.props.form.validateFields((errors, values) => {
-      let params = this.props.form.getFieldsValue(); 
-      params["userId"] = userId;
-      let data = {pushParam: JSON.stringify(params)}
-      Utils.ajaxData({
-        url: url,
-        data: data,
-        callback: (result) => {
-          if (result.code == 200) {
-            Modal.success({
-              title: result.msg,
-              onOk: () => {
-                this.setState({
-                  deviceImg:''
-                })
-                me.handleCancel();
-              }
-            });
-          } else {
-            Modal.error({
-              title: result.msg,
-            });
-          }
+    let url = "/user/pushMessageToSingle.htm";
+    let params = this.props.form.getFieldsValue(); 
+    console.log(params)
+    params["userId"] = userId;
+    let data = params
+    Utils.ajaxData({
+      url: url,
+      data: data,
+      callback: (result) => {
+        if (result.code == 200) {
+          Modal.success({
+            title: result.msg,
+            onOk: () => {
+              this.setState({
+                deviceImg:''
+              })
+              me.handleCancel();
+            }
+          });
+        } else {
+          Modal.error({
+            title: result.msg,
+          });
         }
-      });
-    });
-  },
-  handleChange(info){   
-    if (info.file.status !== 'uploading') {             
-      this.setState({
-        imgPath:info.file.response.data
-      });
-    }
-    if (info.file.status === 'done') {
-      if(info.file.response.code == "200"){
-        message.success(`${info.file.name} ${info.file.response.msg}`);
-      }else {
-        message.error(`${info.file.name} ${info.file.response.msg}`);
       }
-      
-    } else if (info.file.status === 'error') {
-      message.error(`${info.file.name} 上传失败！`);
-    }
+    });
   },
   render() {
     const {
@@ -109,14 +88,7 @@ var AddUserWin = React.createClass({
         span: 15
       },
     };
-    const propss = {
-      name: 'imgData',
-      action: '/modules/manage/banner/bannerImgUploadToOss.htm',
-      headers: {
-        authorization: 'authorization-text',
-      },    
-
-  };  
+ 
     return (
       <Modal title={props.title} visible={props.visible} onCancel={this.handleCancel} width="900"  footer={modalBtns} >
           <Form horizontal  form={this.props.form}>      
@@ -143,20 +115,6 @@ var AddUserWin = React.createClass({
                     </FormItem>
                     </Col>
                 </Row>
-               
-                {/* <Row>      
-                    <Col span="16">
-                    <FormItem {...formItemLayout} label="上传图片">
-                    <img src={this.state.content} style={{ width: 230 }} />
-                    <br />
-                        <Upload {...propss}  onChange = {this.handleChange}>
-                            <Button>
-                                <Icon type="upload"/> 上传图片
-                            </Button>
-                        </Upload>
-                    </FormItem>
-                    </Col>
-                </Row> */}
           </Form>
       </Modal>
     );

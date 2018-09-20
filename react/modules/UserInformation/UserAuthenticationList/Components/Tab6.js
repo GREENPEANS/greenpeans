@@ -38,7 +38,7 @@ var Tab6 = React.createClass({
     });
     var params = {};
       params = {
-        userId: this.props.record.userId,
+        userId: record.userId,
       }
     Utils.ajaxData({
       url: '/modules/manage/userAuth/userIdCardDetail.htm',

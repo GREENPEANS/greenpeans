@@ -25,12 +25,12 @@ var Tab2 = React.createClass({
   componentWillReceiveProps(nextProps){
     if(nextProps.activeKey == '3'){
      
-      this.fetch();
+     // this.fetch();
     }
   },
   componentDidMount(){
     
-    this.fetch();
+  //  this.fetch();
   },
   fetch(params = {}) {
     var me = this;
@@ -115,66 +115,53 @@ var Tab2 = React.createClass({
     return (
       <Form horizontal form={this.props.form} style={{marginTop:'20'}}>           
       <div className="navLine-wrap-left">
-        {/* <h2>银行卡认证状态显示</h2> */}
         <Row>
           <Col span="8">
-            <FormItem {...formItemLayout} label="驾驶证姓名：">
-              <Input value = {this.state.driverName} disabled />
+            <FormItem {...formItemLayout} label="被保人姓名：">
+              <Input {...getFieldProps('bankName', { initialValue: '' }) } disabled />
             </FormItem>
           </Col>
           <Col span="8">
-            <FormItem {...formItemLayout} label="驾驶员性别：">
-              <Input value = {this.state.dirverSex} disabled />
+            <FormItem {...formItemLayout} label="厂牌型号：">
+              <Input {...getFieldProps('policyNumber', { initialValue: '' }) } disabled />
             </FormItem>
           </Col>
           <Col span="8">
-            <FormItem {...formItemLayout} label="所属国籍：">
-              <Input value = {this.state.dirverCountry} disabled />
+            <FormItem {...formItemLayout} label="保单到期时间：">
+              <Input {...getFieldProps('policyTerm', { initialValue: '' }) } disabled />
             </FormItem>
           </Col>
         </Row>
         <Row>
           <Col span="8">
-            <FormItem {...formItemLayout} label="地址：">
-              <Input value = {this.state.dirverAddr} disabled />
+            <FormItem {...formItemLayout} label="保险公司：">
+              <Input {...getFieldProps('insuranceCompany', { initialValue: '' }) } disabled />
             </FormItem>
           </Col>
           <Col span="8">
-            <FormItem {...formItemLayout} label="	出生日期：">
-              <Input value = {this.state.dirverBorthDate} disabled />
+            <FormItem {...formItemLayout} label="险种：">
+              <Input {...getFieldProps('bankCardNo', { initialValue: '' }) } disabled />
             </FormItem>
           </Col>
           <Col span="8">
-            <FormItem {...formItemLayout} label="	领证日期：">
-              <Input value = {this.state.dirverGetCertDate} disabled />
+            <FormItem {...formItemLayout} label="理赔照片：">
+              <Input {...getFieldProps('bankName', { initialValue: '' }) } disabled />
             </FormItem>
           </Col>
-        </Row>            
+        </Row>
         <Row>
           <Col span="8">
-            <FormItem {...formItemLayout} label="有限期效：">
-              <Input  value = {this.state.dirverLimiteDate}  disabled />
+            <FormItem {...formItemLayout} label="保额：">
+              <Input {...getFieldProps('bankName', { initialValue: '' }) } disabled />
             </FormItem>
           </Col>
           <Col span="8">
-            <FormItem {...formItemLayout} label="	准驾车型：">
-              <Input value = {this.state.dirverLicensedCarType} disabled />
+            <FormItem {...formItemLayout} label="车辆种类">
+              <Input {...getFieldProps('bankName', { initialValue: '' }) } disabled />
             </FormItem>
           </Col>
-         
-        </Row> 
-        <Row>
-          <Col span="8">
-            <FormItem {...formItemLayout} label="驾驶证左面照">
-            { this.state.driverLeftImg ? <a href={this.state.driverLeftImg} target="_blank"><img src={this.state.driverLeftImg} onClick={this.magnifyImg} style={{ width: 230 }} /></a> : <Input  value = "暂无" />}
-            </FormItem>
-          </Col>
-          <Col span="8">
-            <FormItem {...formItemLayout} label="驾驶证右面照">
-            { this.state.driverRightImg ? <a href={this.state.driverRightImg} target="_blank"><img src={this.state.driverRightImg} style={{ width: 230 }} /></a> : <Input  value = "暂无" />}
-            </FormItem>
-          </Col>              
-        </Row>                              
+        </Row>
+                          
       </div>
     </Form>
     );

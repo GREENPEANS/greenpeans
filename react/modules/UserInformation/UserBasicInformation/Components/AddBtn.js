@@ -36,7 +36,6 @@ class AddBtn extends React.Component {
   }
   
   handleOk = (e) => {
-    console.log(111)
     var params = this.props.form.getFieldsValue();
     let time = this.props.form.getFieldValue('time');
     let startTime = (DateFormat.formatDate(time[0]));
@@ -45,12 +44,10 @@ class AddBtn extends React.Component {
     params["endTime"] = endTime;
     // params["content"] = this.state.content;
     delete params.time;
-
+    console.log(params)
     Utils.ajaxData({
-        url: '/modules/manage/cl/cluser/userPush.htm',
-        data: {
-          pushParam : JSON.stringify(params)
-        },
+        url: 'user/pushMessageToSingle.htm',
+        data: params,
         callback: (result) => {
           if (result.code == 200) {
             message.success(result.msg); 
@@ -80,22 +77,8 @@ class AddBtn extends React.Component {
   }
 
   componentDidMount() {
-     // console.log(this.props.form.setFieldsValue())
       this.props.form.setFieldsValue(this.props.dataForm);
       
-  }
-
-  handleChange =(info) =>{   
-    if (info.file.status !== 'uploading') {               
-      this.setState({
-        content:info.file.response.data
-      });
-    }
-    if (info.file.status === 'done') {
-      message.success(`${info.file.name} 上传成功！`);
-    } else if (info.file.status === 'error') {
-      message.error(`${info.file.name} 上传失败！`);
-    }
   }
    
   render() {
@@ -120,14 +103,6 @@ class AddBtn extends React.Component {
             span: 19
         },
     };
-    const propss = {
-        name: 'imgData',
-        action: '/modules/manage/cl/cluser/userPushImgUploadToOss.htm',
-        headers: {
-          authorization: 'authorization-text',
-        },
-       
-      };
     var modalBtns = [
         <Button key="back" className="ant-btn" onClick={this.handleCancel}>返 回</Button>,
         <Button key="button" className="ant-btn ant-btn-primary" onClick={this.handleOk}>
@@ -182,20 +157,6 @@ class AddBtn extends React.Component {
                     </FormItem>
                     </Col>
                 </Row>
-               
-                {/* <Row>      
-                    <Col span="16">
-                    <FormItem {...formItemLayout} label="上传图片">
-                    <img src={this.state.content} style={{ width: 230 }} />
-                    <br />
-                        <Upload {...propss}  onChange = {this.handleChange}>
-                            <Button>
-                                <Icon type="upload"/> 上传图片
-                            </Button>
-                        </Upload>
-                    </FormItem>
-                    </Col>
-                </Row> */}
                        
             </div>
           </Form>

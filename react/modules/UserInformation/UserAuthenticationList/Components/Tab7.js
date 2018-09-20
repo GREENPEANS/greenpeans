@@ -17,11 +17,11 @@ var Tab7 = React.createClass({
   },
   componentWillReceiveProps(nextProps){
     if(nextProps.activeKey == '7'){
-      this.fetch();
+      //this.fetch();
     }
   },
   componentDidMount(){
-    this.fetch();
+   // this.fetch();
   },
   handleTableChange(pagination, filters, sorter) {
     const pager = this.state.pagination;

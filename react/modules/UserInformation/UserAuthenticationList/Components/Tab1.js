@@ -61,7 +61,6 @@ var Tab1 = React.createClass({
         }else{
           aItem.push(<span>暂无</span>)
         }
-        
     return (
           <Form horizontal form={this.props.form} style={{marginTop:'20'}}>
             <div className="navLine-wrap-left">
@@ -69,7 +68,7 @@ var Tab1 = React.createClass({
               <Row>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="开户姓名：">
-                    <Input {...getFieldProps('bankUserName', { initialValue: '' }) } disabled />
+                    <Input {...getFieldProps('bankName', { initialValue: '' }) } disabled />
                   </FormItem>
                 </Col>
                 <Col span="8">

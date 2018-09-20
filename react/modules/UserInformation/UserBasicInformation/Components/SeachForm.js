@@ -21,16 +21,12 @@ let SeachForm = React.createClass({
   handleQuery() {
     var params = this.props.form.getFieldsValue();
     if(params.registTime == ""){
-
       params.registTime = undefined
     }else{
       params.registTime = (DateFormat.formatDate(params.registTime)).substring(0,10);
     }
-    if(params.realName){
-    	params.realName = params.realName.replace(/\s+/g, "") 
-    }
     this.props.passParams({
-      searchParams : JSON.stringify(params),
+      search : JSON.stringify(params),
       pageSize: 10,
       current: 1,
     });
@@ -46,16 +42,6 @@ let SeachForm = React.createClass({
   componentDidMount() {
     //this.fetch();
   },
-  // fetch(){
-  //   Utils.ajaxData({
-  //     url: '/modules/manage/promotion/channel/listChannel.htm',
-  //     callback: (result) => {
-  //       this.setState({
-  //         data: result.data,
-  //       });
-  //     }
-  //   });
-  // },
  
   render() {
     const {
@@ -64,10 +50,10 @@ let SeachForm = React.createClass({
     return (
       <Form inline >
         <FormItem label="手机号码：">
-          <Input  {...getFieldProps('loginName') } />
+          <Input  {...getFieldProps('phone') } />
         </FormItem>
         <FormItem label="用户姓名：">
-          <Input  {...getFieldProps('userRealName') } />
+          <Input  {...getFieldProps('userName') } />
         </FormItem>
         <FormItem label="注册时间：">
             <DatePicker allowClear = {false}    {...getFieldProps('registTime', { initialValue: '' }) } style = {{width : 229}} />

@@ -276,7 +276,7 @@ import {
 		},
 		ajaxData: function(obj) {
 			reqwest({
-				url: 'http://192.168.16.16:8082'+obj.url,
+				url: 'http://192.168.1.104:8082'+obj.url,
 				method: obj.method || 'post',
 				headers:{
 					'Authorization':localStorage.getItem('sessionId')
@@ -314,7 +314,7 @@ import {
 		},
 		aajaxData: function(obj) {
 			reqwest({
-				url: 'http://192.168.16.16:8082'+obj.url,
+				url: 'http://192.168.1.104:8082'+obj.url,
 				method: obj.method || 'post',				
 				data: obj.data,
 				asyn: true,

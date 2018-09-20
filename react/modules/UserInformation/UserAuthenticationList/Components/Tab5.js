@@ -23,56 +23,43 @@ var Tab5 = React.createClass({
     };
   },
   componentWillReceiveProps(nextProps){
+    console.log(nextProps)
+    this.setState({
+      userId:nextProps.record.id
+    })
     if(nextProps.activeKey == '5'){
-     
+      // this.setState({
+      //   userId:nextProps.record.id
+      // })
       this.fetch();
     }
   },
   componentDidMount(){
-    
     this.fetch();
   },
   fetch(params = {}) {
-    this.setState({
-      loading: true
-    });
+    var me = this;
     var params = {};
       params = {
-        userId: this.props.record.userId,
-      }
+        userId: this.state.id,
+    }
     Utils.ajaxData({
-      url: '/modules/manage/userAuth/userDrivingCardAtteDetail.htm',
+      url: '/user/auth/getUserAuthDetail.htm',
       data: params,
       callback: (result) => {
         if (result.code == 200) {
-          this.setState({drivingName: result.data.drivingName});
-          this.setState({drivingCarType: result.data.drivingCarType});
-          this.setState({drivingMan: result.data.drivingMan});
-          this.setState({drivingAddr: result.data.drivingAddr});
-          this.setState({drivingPurpose: result.data.drivingPurpose});
-          this.setState({drivingBrand: result.data.drivingBrand});
-          this.setState({drivingCarCode: result.data.drivingCarCode});
-          this.setState({drivingEngineCode: result.data.drivingEngineCode});
-          this.setState({drivingRegistDate: result.data.drivingRegistDate}); 
-          this.setState({drivingLeftImg: result.data.drivingLeftImg});
-          this.setState({drivingRightImg: result.data.drivingRightImg}); 
-
-          this.setState({recordSoure: result.data });
-          this.setState({drivingSendDate: result.data.drivingSendDate}); 
-        }else if(result.code == 400){                   
-          this.setState({drivingName: ""});
-          this.setState({drivingCarType: ""});
-          this.setState({drivingMan: ""});
-          this.setState({drivingAddr: ""});
-          this.setState({drivingPurpose: ""});
-          this.setState({drivingBrand: ""});
-          this.setState({drivingCarCode: ""});
-          this.setState({drivingEngineCode: ""});
-          this.setState({drivingRegistDate: ""});        
-          this.setState({drivingSendDate: ""});
-          this.setState({recordSoure: ""});
-          this.setState({drivingLeftImg: ""})
-          this.setState({drivingRightImg: ""})
+          console.log("12222成功")
+          this.setState({
+            drivingName: result.data.drivingInfo.drivingName,
+            drivingCarType: result.data.drivingInfo.drivingCarType,
+            drivingAddr: result.data.drivingInfo.drivingAddr,
+            drivingPurpose: result.data.drivingInfo.drivingPurpose,
+            drivingBrand: result.data.drivingInfo.drivingBrand,
+            drivingRegistDate: result.data.drivingInfo.drivingRegistDate,
+            drivingLeftImg: result.data.drivingInfo.drivingLeftImg,
+            rivingRightImg: result.data.drivingInfo.rivingRightImg,
+          })
+         console.log(this.state.drivingLeftImg)
         }
       }
     });
@@ -91,24 +78,6 @@ var Tab5 = React.createClass({
                 span: 14
             },
         };
-    const formItemLayout2 = {
-            labelCol: {
-                span: 5
-            },
-            wrapperCol: {
-                span: 19
-            },
-        };
-        var aItem = [];
-        if(state.recordSoure && state.recordSoure.workImgArr){
-          aItem = [];
-          for(var i = 0; i < state.recordSoure.workImgArr.length; i++){
-            aItem.push(<a style={{ marginRight: '10px'}} href={state.recordSoure.workImgArr[i]} target="_blank"><img src={state.recordSoure.workImgArr[i]} style={{width:150,height:150}} /></a>);
-          }
-        }else{
-          aItem.push(<span>暂无</span>)
-        }
-        
     return (
           <Form horizontal form={this.props.form} style={{marginTop:'20'}}>           
             <div className="navLine-wrap-left">
@@ -116,17 +85,17 @@ var Tab5 = React.createClass({
               <Row>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="行驶证姓名：">
-                    <Input value = {this.state.drivingName} disabled />
+                    <Input value = {this.state.driverName}  />
                   </FormItem>
                 </Col>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="车辆类型：">
-                    <Input  value = {this.state.drivingCarType} disabled />
+                    <Input  value = {this.state.driverName} disabled />
                   </FormItem>
                 </Col>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="车辆持有人：">
-                    <Input value = {this.state.drivingMan}  disabled />
+                    <Input value = {this.state.drivingMan}   disabled />
                   </FormItem>
                 </Col>
               </Row>
@@ -138,7 +107,7 @@ var Tab5 = React.createClass({
                 </Col>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="	使用性质：">
-                    <Input value = {this.state.drivingPurpose} disabled />
+                    <Input  value = {this.state.drivingPurpose} disabled />
                   </FormItem>
                 </Col>
                 <Col span="8">
@@ -150,17 +119,17 @@ var Tab5 = React.createClass({
               <Row>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="车辆识别码：">
-                    <Input value = {this.state.drivingCarCode} disabled />
+                    <Input  value = {this.state.drivingCarCode} disabled />
                   </FormItem>
                 </Col>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="	发动机号码：">
-                    <Input value = {this.state.drivingEngineCode} disabled />
+                    <Input   value = {this.state.drivingEngineCode} disabled />
                   </FormItem>
                 </Col>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="	注册日期：">
-                    <Input value = {this.state.drivingRegistDate} disabled />
+                    <Input   value = {this.state.drivingRegistDate} disabled />
                   </FormItem>
                 </Col>
                
@@ -168,7 +137,7 @@ var Tab5 = React.createClass({
               <Row>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="发证日期：">
-                    <Input value = {this.state.drivingSendDate} disabled />
+                    <Input   value = {this.state.drivingSendDate} disabled />
                   </FormItem>
                 </Col>
                 
@@ -176,12 +145,13 @@ var Tab5 = React.createClass({
               <Row>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="行驶证左面照">
-                  { this.state.drivingLeftImg ? <a href={this.state.drivingLeftImg} target="_blank"><img src={this.state.drivingLeftImg} style={{ width: 230 }} /></a> : <Input  value = "暂无" disabled />}
+                  <img src={this.state.drivingLeftImg} style={{ width: 230 }} />  
+                    {this.state.drivingLeftImg ? <a href={this.state.drivingLeftImg} target="_blank"><img src={this.state.drivingLeftImg} style={{ width: 230 }} /></a> : <Input  value = "暂无" disabled />}
                   </FormItem>
                 </Col>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="行驶证右面照">
-                  { this.state.drivingRightImg ? <a href={this.state.drivingRightImg} target="_blank"><img src={this.state.drivingRightImg} style={{ width: 230 }} /></a> : <Input  value = "暂无" disabled />}
+                    {this.state.rivingRightImg ? <a href={this.state.rivingRightImg} target="_blank"><img src={this.state.rivingRightImg} style={{ width: 230 }} /></a> : <Input  value = "暂无" disabled />}
                   </FormItem>
                 </Col>              
               </Row>                          

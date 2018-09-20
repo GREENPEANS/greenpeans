@@ -64,36 +64,12 @@ var Tab1 = React.createClass({
         
     return (
           <Form horizontal form={this.props.form} style={{marginTop:'20'}}>
-            {/* {state.recordSoure?
-            <div>
-            <div className="uploadFile" style={{ paddingLeft: '20' }}>
-              <div className="img" style={{ height: '210' }}>
-                <span style={userbaseTit}>人脸照片</span>
-                {state.recordSoure.userbase.livingImg ? <a href={state.recordSoure.userbase.livingImg} target="_blank"><img src={state.recordSoure.userbase.livingImg} style={{ width: 150, height: 150 }} /></a> : <span>暂无</span>}
-              </div>
-              <div className="img" style={{ height: '210' }}>
-                <span style={userbaseTit}>身份证正面</span>
-                {state.recordSoure.userbase.frontImg ? <a href={state.recordSoure.userbase.frontImg} target="_blank"><img src={state.recordSoure.userbase.frontImg} style={{ width: 150, height: 150 }} /></a> : <span>暂无</span>}
-              </div>
-              <div className="img" style={{ height: '210' }}>
-                <span style={userbaseTit}>身份证背面</span>
-                {state.recordSoure.userbase.backImg ? <a href={state.recordSoure.userbase.backImg} target="_blank"><img src={state.recordSoure.userbase.backImg} style={{ width: 150, height: 150 }} /></a> : <span>暂无</span>}
-              </div>
-            </div>
-             <div className="uploadFile" style={{paddingLeft:'20'}}>
-               <div className="img1" style={{height:'210'}}>
-                <span style={userbaseTit}>工作照</span>
-                {aItem}
-              </div>
-              </div>
-              </div>
-            :null} */}
             <div className="navLine-wrap-left">
               {/* <h2>基本信息</h2> */}
               <Row>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="	手机号码：">
-                    <Input {...getFieldProps('userPhone', { initialValue: '' }) } disabled={props.canEdit} />
+                    <Input {...getFieldProps('loginName', { initialValue: '' }) } disabled={props.canEdit} />
                   </FormItem>
                 </Col>
                 <Col span="8">
