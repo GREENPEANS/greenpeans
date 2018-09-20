@@ -177,6 +177,8 @@ export default React.createClass({
             <Button className="particulars" onClick={me.showAssignModal.bind(me, '查看详情', record, true,orderNo)}><i className="icon iconfont icon-icon-chakanxq"></i></Button>        
           </Tooltip>  
                  
+
+          
           {record.status == 0  ? 
           (<a href="javascript:;">
           <span className="ant-divider"></span> 
