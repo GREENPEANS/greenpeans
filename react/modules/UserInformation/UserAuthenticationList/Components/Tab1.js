@@ -44,31 +44,15 @@ var Tab1 = React.createClass({
                 span: 14
             },
         };
-    const formItemLayout2 = {
-            labelCol: {
-                span: 5
-            },
-            wrapperCol: {
-                span: 19
-            },
-        };
-        var aItem = [];
-        if(state.recordSoure && state.recordSoure.workImgArr){
-          aItem = [];
-          for(var i = 0; i < state.recordSoure.workImgArr.length; i++){
-            aItem.push(<a style={{ marginRight: '10px'}} href={state.recordSoure.workImgArr[i]} target="_blank"><img src={state.recordSoure.workImgArr[i]} style={{width:150,height:150}} /></a>);
-          }
-        }else{
-          aItem.push(<span>暂无</span>)
-        }
+
     return (
           <Form horizontal form={this.props.form} style={{marginTop:'20'}}>
             <div className="navLine-wrap-left">
-              {/* <h2>银行卡认证状态显示</h2> */}
+              <h2>银行卡认证状态显示</h2>
               <Row>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="开户姓名：">
-                    <Input {...getFieldProps('bankName', { initialValue: '' }) } disabled />
+                    <Input {...getFieldProps('bankUserName', { initialValue: '' }) } disabled />
                   </FormItem>
                 </Col>
                 <Col span="8">

@@ -23,14 +23,13 @@ var Tab2 = React.createClass({
     };
   },
   componentWillReceiveProps(nextProps){
-    if(nextProps.activeKey == '3'){
-     
-     // this.fetch();
+    if(nextProps.activeKey == '2'){   
+    //  this.fetch();
     }
   },
   componentDidMount(){
     
-  //  this.fetch();
+    this.fetch();
   },
   fetch(params = {}) {
     var me = this;
@@ -39,40 +38,25 @@ var Tab2 = React.createClass({
     });
     var params = {};
       params = {
-        userId: this.props.record.userId,
+        userId: this.props.record.id,
       }
     Utils.ajaxData({
-      url: '/modules/manage/userAuth/userDriverCardAtteDetail.htm',
+      url: '/user/auth/getUserAuthDetail.htm',
       data: params,
       callback: (result) => {
         if (result.code == 200) {
-          this.setState({driverName: result.data.driverName});
-          this.setState({dirverLimiteDate: result.data.dirverLimiteDate});
-          this.setState({dirverLicensedCarType: result.data.dirverLicensedCarType});
-          this.setState({dirverGetCertDate: result.data.dirverGetCertDate});
-          this.setState({dirverBorthDate: result.data.dirverBorthDate});
-          this.setState({dirverAddr: result.data.dirverAddr});
-          this.setState({dirverCountry: result.data.dirverCountry});
-          this.setState({dirverSex: result.data.dirverSex});
-          this.setState({driverName: result.data.driverName}); 
-          this.setState({driverLeftImg: result.data.driverLeftImg});
-          this.setState({driverRightImg: result.data.driverRightImg}); 
-          
-          this.setState({recordSoure: result.data })
+          let data = result.data.policyInfo;
+          this.setState({
+            insuranceCompany: data.insuranceCompany,
+            insuranceImg: data.insuranceImg,
+            policyNumber: data.policyNumber,
+            policyLimit:data.policyLimit,
+            policyOperator:data.policyOperator,
+            policyStatus:data.policyStatus,
+            policyTerm:data.policyTerm
+          })
         }else if(result.code == 400){
-          var dataForm = {};                   
-          this.setState({driverName: ""});
-          this.setState({dirverLimiteDate: ""});
-          this.setState({dirverLicensedCarType: ""});
-          this.setState({dirverGetCertDate: ""});
-          this.setState({dirverBorthDate: ""});
-          this.setState({dirverAddr: ""});
-          this.setState({dirverCountry: ""});
-          this.setState({dirverSex: ""});
-          this.setState({driverName: ""});         
-          this.setState({recordSoure: ""});
-          this.setState({driverLeftImg: ""});         
-          this.setState({driverRightImg: ""})
+
         }
       }
     });
@@ -94,74 +78,82 @@ var Tab2 = React.createClass({
                 span: 14
             },
         };
-    const formItemLayout2 = {
-            labelCol: {
-                span: 5
-            },
-            wrapperCol: {
-                span: 19
-            },
-        };
-        var aItem = [];
-        if(state.recordSoure && state.recordSoure.workImgArr){
-          aItem = [];
-          for(var i = 0; i < state.recordSoure.workImgArr.length; i++){
-            aItem.push(<a style={{ marginRight: '10px'}} href={state.recordSoure.workImgArr[i]} target="_blank"><img src={state.recordSoure.workImgArr[i]} style={{width:150,height:150}} /></a>);
-          }
-        }else{
-          aItem.push(<span>暂无</span>)
-        }
-        
+  
     return (
       <Form horizontal form={this.props.form} style={{marginTop:'20'}}>           
       <div className="navLine-wrap-left">
+        <h2>保单认证状态显示</h2>
         <Row>
           <Col span="8">
             <FormItem {...formItemLayout} label="被保人姓名：">
-              <Input {...getFieldProps('bankName', { initialValue: '' }) } disabled />
+              <Input value = {this.state.driverName} disabled />
             </FormItem>
           </Col>
           <Col span="8">
             <FormItem {...formItemLayout} label="厂牌型号：">
-              <Input {...getFieldProps('policyNumber', { initialValue: '' }) } disabled />
+              <Input value = {this.state.dirverSex} disabled />
             </FormItem>
           </Col>
           <Col span="8">
-            <FormItem {...formItemLayout} label="保单到期时间：">
-              <Input {...getFieldProps('policyTerm', { initialValue: '' }) } disabled />
+            <FormItem {...formItemLayout} label="保险期限：">
+              <Input value = {this.state.policyTerm} disabled />
             </FormItem>
           </Col>
         </Row>
         <Row>
+          <Col span="8">
+            <FormItem {...formItemLayout} label="保单编号：">
+              <Input value = {this.state.policyNumber} disabled />
+            </FormItem>
+          </Col>
+          <Col span="8">
+            <FormItem {...formItemLayout} label="保单审核人：">
+              <Input value = {this.state.policyOperator} disabled />
+            </FormItem>
+          </Col>
           <Col span="8">
             <FormItem {...formItemLayout} label="保险公司：">
-              <Input {...getFieldProps('insuranceCompany', { initialValue: '' }) } disabled />
+              <Input value = {this.state.insuranceCompany} disabled />
             </FormItem>
           </Col>
-          <Col span="8">
-            <FormItem {...formItemLayout} label="险种：">
-              <Input {...getFieldProps('bankCardNo', { initialValue: '' }) } disabled />
-            </FormItem>
-          </Col>
-          <Col span="8">
-            <FormItem {...formItemLayout} label="理赔照片：">
-              <Input {...getFieldProps('bankName', { initialValue: '' }) } disabled />
-            </FormItem>
-          </Col>
-        </Row>
+        </Row>            
         <Row>
           <Col span="8">
-            <FormItem {...formItemLayout} label="保额：">
-              <Input {...getFieldProps('bankName', { initialValue: '' }) } disabled />
+            <FormItem {...formItemLayout} label="险种：">
+              <Input  value = {this.state.dirverLimiteDate}  disabled />
             </FormItem>
           </Col>
           <Col span="8">
-            <FormItem {...formItemLayout} label="车辆种类">
-              <Input {...getFieldProps('bankName', { initialValue: '' }) } disabled />
+            <FormItem {...formItemLayout} label="保单额度：">
+              <Input value = {this.state.policyLimit} disabled />
             </FormItem>
           </Col>
-        </Row>
-                          
+          <Col span="8">
+            <FormItem {...formItemLayout} label="车辆种类：">
+              <Input value = {this.state.dirverLicensedCarType} disabled />
+            </FormItem>
+          </Col>
+         
+        </Row> 
+        <Row>
+          <Col span="8">
+            <FormItem {...formItemLayout} label="保单审核状态：">
+              <Input  value = {this.state.dirverLimiteDate}  disabled />
+            </FormItem>
+          </Col>
+        </Row> 
+        <Row>
+          <Col span="8">
+            <FormItem {...formItemLayout} label="理赔照片：">
+            { this.state.insuranceImg ? <a href={this.state.insuranceImg} target="_blank"><img src={this.state.insuranceImg} onClick={this.magnifyImg} style={{ width: 230 }} /></a> : <Input  value = "暂无" />}
+            </FormItem>
+          </Col>
+          <Col span="8">
+            <FormItem {...formItemLayout} label="保单照片：">
+            { this.state.insuranceImg ? <a href={this.state.insuranceImg} target="_blank"><img src={this.state.insuranceImg} style={{ width: 230 }} /></a> : <Input  value = "暂无" />}
+            </FormItem>
+          </Col>              
+        </Row>                 
       </div>
     </Form>
     );

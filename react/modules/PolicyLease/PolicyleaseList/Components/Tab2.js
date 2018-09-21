@@ -159,37 +159,47 @@ var Tab2 = React.createClass({
       dataIndex: "stageCurrentCharge",
     }, {
       title: '期供',
-      dataIndex: "moneyMonthPay",
+      dataIndex: "monthAmount",
     }, {
       title: '本金',
       dataIndex: "loanAmount",
     }, {
       title: '优惠券使用',
-      dataIndex: "11",
+      dataIndex: "coupon",
     }, {
       title: '支付状态',
       dataIndex: "payStatus",
       render: (text, record)=>{
         if(record.payStatus==0){
-          return "支付失败"
-        }else if(record.payStatus==1){
-          return "支付成功"
-        }else if(record.payStatus==2){
           return "未支付"
+        }else if(record.payStatus==1){
+          return "已支付"
+        }else if(record.payStatus==2){
+          return "支付中"
+        }else if(record,payStatus == 3){
+          return "支付失败"
         }else{
+
           return "-"
         }
       }
     }, {
       title: '还款日期',
       dataIndex: "payEndTime",
+      render:(text,record) =>{
+        if(text == null || text == ""){
+          return "未还款";
+        }else{
+          return text; 
+        }
+      }
     }, {
       title: '是否逾期',
       dataIndex: "isOverdue",
       render: (text, record)=>{
-        if(record.stageHasOverdue==0){
+        if(record.isOverdue==0){
           return "否"
-        }else if(record.stageHasOverdue==1){
+        }else if(record.isOverdue==1){
           return "是"
         }else{
           return "-"
@@ -203,13 +213,13 @@ var Tab2 = React.createClass({
       dataIndex: "overdueAmount",
     }, {
       title: '还款状态',
-      dataIndex: "stagePayType",
+      dataIndex: "payType",
       render: (text, record)=>{
-        if(record.stagePayType==0){
+        if(record.payType ==0){
           return "正常还款"
-        }else if(record.stagePayType==1){
+        }else if(record.payType==1){
           return "提前还款"
-        }else if(record.stagePayType==2){
+        }else if(record.payType==2){
           return "本期作废"
         }else{
           return "-"

@@ -6,7 +6,6 @@ import {
   Tooltip
 } from 'antd';
 import ReviewWin from './ReviewWin';
-import AddPerson from './AddPerson';
 var confirm = Modal.confirm;
 const objectAssign = require('object-assign');
 
@@ -79,28 +78,35 @@ export default React.createClass({
 
   //报价
   showAssignModal(title,record,canEdit) {
-    this.setState({
-      personVisible: true,
-      title: title,
-      record: record,
-      canEdit:canEdit
-    });
-    Utils.ajaxData({
-      url: '/modules/manage/rzorder/offer.htm',
-      data: {
-        'type':'',
-        'orderNo': record.orderNo,
-        'userId':record.userId,       
+    let me = this;
+    confirm({
+      title: '您确定是否生成分期记录？',
+      content:'请您谨慎操作，此操作只能执行一次！！！！',
+      onOk: function() {
+        Utils.ajaxData({
+          url: '/modules/manage/rzorder/createstage.htm',
+          data: {
+            'type':'pass',
+            'id':record.id,       
+          },
+          callback: (result) =>{
+            if (result.code == 200) {
+              Modal.success({
+                title: result.msg,
+              });
+              me.refreshList();
+            } else {
+              Modal.error({
+                title: result.msg,
+              });
+            }
+          }
+        })
       },
-      callback: (result) =>{
+      onCancel: function() { 
         
-        if(result.code == 200){
-          this.refs.AddPerson.setFieldsValue(result.data);
-        }
-
-        
-      }
-    })
+      }});
+   
   },
 
   //分页
@@ -250,10 +256,10 @@ export default React.createClass({
       title: '操作',
       render: (text, record,orderNo) => {
         return <div>
-          {record.offerStatus == "0"  ? 
+          {record.orderStatus == "0"  ? 
             (<a href="javascript:;">
-              <Tooltip placement="bottomLeft" title="报价" >
-                <Button  className="zibtntwo" onClick={me.showAssignModal.bind(me, '报价',record, false)}><i className="icon iconfont icon-audit"></i></Button>        
+              <Tooltip placement="bottomLeft" title="分期审核" >
+                <Button  className="zibtntwo" onClick={me.showAssignModal.bind(me, '分期审核',record, false)}><i className="icon iconfont icon-audit"></i></Button>        
               </Tooltip><span className="ant-divider"></span></a>  )  
             : 
             (<a href="javascript:;"></a>)
@@ -278,8 +284,6 @@ export default React.createClass({
           onChange={this.handleTableChange} />
         <ReviewWin ref="ReviewWin" visible={state.visible} recordSoure={state.recordSoure} title={state.title} hideModal={me.hideModal} record={state.record}
           canEdit={state.canEdit} />
-        <AddPerson ref="AddPerson" visible={state.personVisible} title={state.title} hideModal={me.hideModal} selectRecord={state.record}
-          canEdit={state.canEdit}/>  
       </div>
         
     );

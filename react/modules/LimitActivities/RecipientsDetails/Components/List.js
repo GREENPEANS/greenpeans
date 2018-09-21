@@ -158,16 +158,21 @@ export default React.createClass({
             title: '使用状态',
             dataIndex: 'status',
             render:(text,record) =>{
+                
+                var useTime = '使用时间：' + record.useTime;
+                var orderNo = '关联订单：' + record.orderNo;
+                if (record.useTime == null || record.useTime == ""){
+                    useTime = "使用时间：暂无信息";
+                }
+                if (record.orderNo == null || record.orderNo == ""){
+                     orderNo = "关联订单：暂无信息";
+                 }
                 if(text == 0){
                     let st = '使用状态：未使用';
-                    let useTime = '使用时间：' + record.useTime;
-                    let orderNo = '关联订单：' + record.orderNo;
                     let msg = st + '  ' + useTime + '  '+orderNo 
                     return msg; 
                 }else if (text == 1){
                     let st = '使用状态：使用';
-                    let useTime = '使用时间：' + record.useTime;
-                    let orderNo = '关联订单：' + record.orderNo;
                     let msg = st + '  ' + useTime + '   '+orderNo 
                     return msg;
                 }

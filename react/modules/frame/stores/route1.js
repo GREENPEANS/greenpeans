@@ -11,7 +11,9 @@ var LeasebackBack = require('../../OrderList/LeasebackBack/index') // 保单售�
 
 var PolicyleaseList = require('../../PolicyLease/PolicyleaseList/index') // 保单融租租赁 订单列表
 var PolicyleaseOverdue = require('../../PolicyLease/PolicyleaseOverdue/index') // 保单融租租赁 分期逾期订单列表
+var PolicyOffer = require('../../PolicyLease/PolicyOffer/index') // 保单融租租赁 分期逾期订单列表
 var WPolicyleaseOverdue = require('../../PolicyLease/WPolicyleaseOverdue/index') // 保单融租租赁 分期逾期订单列表
+
 var RecipientsDetails = require('../../LimitActivities/RecipientsDetails/index') // 限时——首期免租 领用详情
 var DiscountCoupon = require('../../LimitActivities/DiscountCoupon/index') // 限时——首期免租 优惠券派发
 var SmallCutinfo = require('../../SmallCut/SmallCutinfo/index') // 小剐小蹭租减免 审核及发放详情
@@ -24,6 +26,7 @@ var ChannelManage = require('../../Message/ChannelManage/index');//短信任务�
 var ChannelInformationStatistics = require('../../Message/ChannelInformationStatistics/index');//短信状态列表
 module.exports = {
   PolicyleaseOverdue,
+  PolicyOffer,
   WPolicyleaseOverdue,
   ChannelInformationStatistics,
   ChannelManage,

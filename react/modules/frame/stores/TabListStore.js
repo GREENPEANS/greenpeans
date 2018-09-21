@@ -60,6 +60,7 @@ export default Reflux.createStore({
 					// 'LoanApplicationManage',
 					// 'MachineRequestRecord',
 					'PolicyleaseOverdue',
+					'PolicyOffer',
 					'WPolicyleaseOverdue',
 					'userBorrowTotal',
 					'userRepayBorrowTotal',

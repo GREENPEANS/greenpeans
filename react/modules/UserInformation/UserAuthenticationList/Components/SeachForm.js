@@ -10,6 +10,7 @@ import {
 const createForm = Form.create;
 const FormItem = Form.Item;
 const Option = Select.Option;
+const RangePicker = DatePicker.RangePicker;
 let SeachForm = React.createClass({
   getInitialState() {
         return {
@@ -18,6 +19,15 @@ let SeachForm = React.createClass({
     },
   handleQuery() {
     var params = this.props.form.getFieldsValue();
+    if(params.registTimeComplete){
+    	if(params.registTimeComplete[0]){
+    		if(params.registTimeComplete[1]){
+          params.startTime = (DateFormat.formatDate(params.registTimeComplete[0])).substring(0,10);
+          params.endTime = (DateFormat.formatDate(params.registTimeComplete[1])).substring(0,10);
+    	
+    		}
+    		}
+      }
     this.props.passParams({
       search : JSON.stringify(params),
       pageSize: 10,
@@ -49,11 +59,13 @@ let SeachForm = React.createClass({
         </FormItem>
         <FormItem label="状态:">
           <Select style={{ width: 100 }} {...getFieldProps('status')} placeholder='请选择...'>
+              <Option value="">全部</Option>
               <Option value="10">未认证</Option>
               <Option value="20">认证中</Option>
               <Option value="30">已认证</Option>
           </Select>
         </FormItem>      
+       
         <FormItem>
           <Tooltip placement="bottomLeft" title="查询" >
             <Button type="primary" onClick={this.handleQuery}><i className="icon iconfont icon-monitor"></i></Button>

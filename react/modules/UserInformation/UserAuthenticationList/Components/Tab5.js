@@ -9,57 +9,47 @@ import {
 const createForm = Form.create;
 const FormItem = Form.Item;
 const objectAssign = require('object-assign');
-const userbaseTit = {
-  color: '#2db7f5',
-  textAlign: 'center',
-  fontSize: '14px',
-  marginBottom: '10px',
-  display: 'block',
-  width: '150px',
-}
 var Tab5 = React.createClass({
   getInitialState() {
     return {
     };
   },
   componentWillReceiveProps(nextProps){
-    console.log(nextProps)
-    this.setState({
-      userId:nextProps.record.id
-    })
-    if(nextProps.activeKey == '5'){
-      // this.setState({
-      //   userId:nextProps.record.id
-      // })
-      this.fetch();
+    if(nextProps.activeKey == '5'){   
+     // this.fetch();
     }
   },
-  componentDidMount(){
+  componentDidMount(){    
     this.fetch();
   },
   fetch(params = {}) {
-    var me = this;
     var params = {};
-      params = {
-        userId: this.state.id,
+    params = {
+      userId: this.props.record.id,
     }
     Utils.ajaxData({
       url: '/user/auth/getUserAuthDetail.htm',
       data: params,
       callback: (result) => {
         if (result.code == 200) {
-          console.log("12222成功")
+          let data = result.data.drivingInfo;
           this.setState({
-            drivingName: result.data.drivingInfo.drivingName,
-            drivingCarType: result.data.drivingInfo.drivingCarType,
-            drivingAddr: result.data.drivingInfo.drivingAddr,
-            drivingPurpose: result.data.drivingInfo.drivingPurpose,
-            drivingBrand: result.data.drivingInfo.drivingBrand,
-            drivingRegistDate: result.data.drivingInfo.drivingRegistDate,
-            drivingLeftImg: result.data.drivingInfo.drivingLeftImg,
-            rivingRightImg: result.data.drivingInfo.rivingRightImg,
+            drivingName: data.drivingName,
+            drivingCarType: data.drivingCarType,
+            drivingMan: data.drivingMan,
+            drivingAddr: data.drivingAddr,
+            drivingPurpose: data.drivingPurpose,
+            drivingBrand: data.drivingBrand,
+            drivingCarCode: data.drivingCarCode,
+            drivingEngineCode: data.drivingEngineCode,
+            drivingRegistDate: data.drivingRegistDate,
+            drivingLeftImg: data.drivingLeftImg,
+            drivingRightImg: data.drivingRightImg,
+            recordSoure: result.data.drivingInfo,
+            drivingSendDate: result.data.rivingSendDate
           })
-         console.log(this.state.drivingLeftImg)
+        }else if(result.code == 400){                   
+
         }
       }
     });
@@ -81,21 +71,21 @@ var Tab5 = React.createClass({
     return (
           <Form horizontal form={this.props.form} style={{marginTop:'20'}}>           
             <div className="navLine-wrap-left">
-              {/* <h2>银行卡认证状态显示</h2> */}
+              <h2>行驶证认证状态显示</h2>
               <Row>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="行驶证姓名：">
-                    <Input value = {this.state.driverName}  />
+                    <Input value = {this.state.drivingName} disabled />
                   </FormItem>
                 </Col>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="车辆类型：">
-                    <Input  value = {this.state.driverName} disabled />
+                    <Input  value = {this.state.drivingCarType} disabled />
                   </FormItem>
                 </Col>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="车辆持有人：">
-                    <Input value = {this.state.drivingMan}   disabled />
+                    <Input value = {this.state.drivingMan}  disabled />
                   </FormItem>
                 </Col>
               </Row>
@@ -107,7 +97,7 @@ var Tab5 = React.createClass({
                 </Col>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="	使用性质：">
-                    <Input  value = {this.state.drivingPurpose} disabled />
+                    <Input value = {this.state.drivingPurpose} disabled />
                   </FormItem>
                 </Col>
                 <Col span="8">
@@ -119,17 +109,17 @@ var Tab5 = React.createClass({
               <Row>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="车辆识别码：">
-                    <Input  value = {this.state.drivingCarCode} disabled />
+                    <Input value = {this.state.drivingCarCode} disabled />
                   </FormItem>
                 </Col>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="	发动机号码：">
-                    <Input   value = {this.state.drivingEngineCode} disabled />
+                    <Input value = {this.state.drivingEngineCode} disabled />
                   </FormItem>
                 </Col>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="	注册日期：">
-                    <Input   value = {this.state.drivingRegistDate} disabled />
+                    <Input value = {this.state.drivingRegistDate} disabled />
                   </FormItem>
                 </Col>
                
@@ -137,7 +127,7 @@ var Tab5 = React.createClass({
               <Row>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="发证日期：">
-                    <Input   value = {this.state.drivingSendDate} disabled />
+                    <Input value = {this.state.drivingSendDate} disabled />
                   </FormItem>
                 </Col>
                 
@@ -145,13 +135,12 @@ var Tab5 = React.createClass({
               <Row>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="行驶证左面照">
-                  <img src={this.state.drivingLeftImg} style={{ width: 230 }} />  
-                    {this.state.drivingLeftImg ? <a href={this.state.drivingLeftImg} target="_blank"><img src={this.state.drivingLeftImg} style={{ width: 230 }} /></a> : <Input  value = "暂无" disabled />}
+                  { this.state.drivingLeftImg ? <a href={this.state.drivingLeftImg} target="_blank"><img src={this.state.drivingLeftImg} style={{ width: 230 }} /></a> : <Input  value = "暂无" disabled />}
                   </FormItem>
                 </Col>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="行驶证右面照">
-                    {this.state.rivingRightImg ? <a href={this.state.rivingRightImg} target="_blank"><img src={this.state.rivingRightImg} style={{ width: 230 }} /></a> : <Input  value = "暂无" disabled />}
+                  { this.state.drivingRightImg ? <a href={this.state.drivingRightImg} target="_blank"><img src={this.state.drivingRightImg} style={{ width: 230 }} /></a> : <Input  value = "暂无" disabled />}
                   </FormItem>
                 </Col>              
               </Row>                          

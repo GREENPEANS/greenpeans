@@ -42,14 +42,25 @@ export default React.createClass({
           userId: record.id
         },
         callback: (result) => {
-          if (result.code == 200) {          
-            this.refs.ReviewWin.refs.Tab1.setFieldsValue(result.data.bankInfo);
-            this.refs.ReviewWin.refs.Tab2.setFieldsValue(result.data.policyInfo);
+          if (result.code == 200) {
+            console.log(result.data)
+            if(result.data.bankInfo != null){
+              var dataForm = {};
+              dataForm.bankCardNo = result.data.bankInfo.bankCardNo;
+              dataForm.bankCode = result.data.bankInfo.bankCode;
+              dataForm.bankName = result.data.bankInfo.bankName;
+              dataForm.createTime = result.data.bankInfo.createTime;
+              dataForm.bankUserName = result.data.bankInfo.bankUserName;
+             
+              this.refs.ReviewWin.refs.Tab1.setFieldsValue(dataForm);
+            }
+           
             this.setState({
-              recordSoure: result.data
+              recordSoure: result.data.bankInfo
             })
-          }else if(result.code == 400){       
-            this.refs.ReviewWin.refs.Tab1.setFieldsValue(result.data);
+          }else if(result.code == 400){
+            var dataForm = {};          
+            this.refs.ReviewWin.refs.Tab1.setFieldsValue(dataForm);
             this.setState({
               recordSoure: result.data
             })
@@ -66,7 +77,7 @@ export default React.createClass({
     this.refreshList();
   },
   rowKey(record) {
-    return record.userId;
+    return record.id;
   },
 
   //分页

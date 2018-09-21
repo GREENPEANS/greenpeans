@@ -38,28 +38,26 @@ var Tab6 = React.createClass({
     });
     var params = {};
       params = {
-        userId: record.userId,
+        userId: this.props.record.id,
       }
     Utils.ajaxData({
-      url: '/modules/manage/userAuth/userIdCardDetail.htm',
+      url: '/user/auth/getUserAuthDetail.htm',
       data: params,
       callback: (result) => {
         if (result.code == 200) {
-          this.setState({idNo: result.data.idNo});
-          this.setState({idAddr: result.data.idAddr});
-          this.setState({liveImg: result.data.liveImg});
-          this.setState({idFrontImg: result.data.idFrontImg});
-          this.setState({idBackImg: result.data.idBackImg});
-
-          this.setState({recordSoure: result.data })
+          let data = result.data.userInfo;
+          this.setState({
+            idNo: data.idNo,
+            idAddr: data.idAddr,
+            liveImg: data.liveImg,
+            idFrontImg: data.idFrontImg,
+            idBackImg: data.idBackImg,
+            idBackImg: data.idBackImg,
+            recordSoure: result.data.userInfo,
+            email: data.email
+          })
         }else if(result.code == 400){                   
-          this.setState({idNo: ""});
-          this.setState({idAddr: ""});
          
-          this.setState({recordSoure: ""});
-          this.setState({idBackImg: ""});
-          this.setState({idFrontImg: ""});
-          this.setState({liveImg: ""});
         }
       }
     });
@@ -99,7 +97,7 @@ var Tab6 = React.createClass({
     return (
           <Form horizontal form={this.props.form} style={{marginTop:'20'}}>           
             <div className="navLine-wrap-left">
-              {/* <h2>银行卡认证状态显示</h2> */}
+              <h2>身份证认证状态显示</h2>
               <Row>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="身份证号">
@@ -110,7 +108,12 @@ var Tab6 = React.createClass({
                   <FormItem {...formItemLayout} label="身份证地址">
                     <Input  value = {this.state.idAddr} disabled  title={this.state.idAddr}/>
                   </FormItem>
-                </Col>               
+                </Col>        
+                <Col span="8">
+                  <FormItem {...formItemLayout} label="邮箱">
+                    <Input value = {this.state.email} disabled />
+                  </FormItem>
+                </Col>       
               </Row>
              
               <Row>

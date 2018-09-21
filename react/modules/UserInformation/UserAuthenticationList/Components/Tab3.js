@@ -23,14 +23,12 @@ var Tab3 = React.createClass({
     };
   },
   componentWillReceiveProps(nextProps){
-    if(nextProps.activeKey == '3'){
-     
+    if(nextProps.activeKey == '3'){    
      // this.fetch();
     }
   },
-  componentDidMount(){
-    
-   // this.fetch();
+  componentDidMount(){   
+    this.fetch();
   },
   fetch(params = {}) {
     var me = this;
@@ -39,40 +37,21 @@ var Tab3 = React.createClass({
     });
     var params = {};
       params = {
-        userId: this.props.record.userId,
+        userId: this.props.record.id,
       }
     Utils.ajaxData({
-      url: '/modules/manage/userAuth/userDriverCardAtteDetail.htm',
+      url: '/user/auth/getUserAuthDetail.htm',
       data: params,
       callback: (result) => {
         if (result.code == 200) {
-          this.setState({driverName: result.data.driverName});
-          this.setState({dirverLimiteDate: result.data.dirverLimiteDate});
-          this.setState({dirverLicensedCarType: result.data.dirverLicensedCarType});
-          this.setState({dirverGetCertDate: result.data.dirverGetCertDate});
-          this.setState({dirverBorthDate: result.data.dirverBorthDate});
-          this.setState({dirverAddr: result.data.dirverAddr});
-          this.setState({dirverCountry: result.data.dirverCountry});
-          this.setState({dirverSex: result.data.dirverSex});
-          this.setState({driverName: result.data.driverName}); 
-          this.setState({driverLeftImg: result.data.driverLeftImg});
-          this.setState({driverRightImg: result.data.driverRightImg}); 
+          this.setState({driverLeftImg: result.data.carInsuranceInfo.leftFontImg});
+          this.setState({driverRightImg: result.data.carInsuranceInfo.rightFontImg}); 
+          this.setState({leftBackImg: result.data.carInsuranceInfo.leftBackImg});
+          this.setState({rightBackImg: result.data.carInsuranceInfo.rightBackImg}); 
           
-          this.setState({recordSoure: result.data })
+          this.setState({recordSoure: result.data.carInsuranceInfo })
         }else if(result.code == 400){
-          var dataForm = {};                   
-          this.setState({driverName: ""});
-          this.setState({dirverLimiteDate: ""});
-          this.setState({dirverLicensedCarType: ""});
-          this.setState({dirverGetCertDate: ""});
-          this.setState({dirverBorthDate: ""});
-          this.setState({dirverAddr: ""});
-          this.setState({dirverCountry: ""});
-          this.setState({dirverSex: ""});
-          this.setState({driverName: ""});         
-          this.setState({recordSoure: ""});
-          this.setState({driverLeftImg: ""});         
-          this.setState({driverRightImg: ""})
+
         }
       }
     });
@@ -115,8 +94,8 @@ var Tab3 = React.createClass({
     return (
       <Form horizontal form={this.props.form} style={{marginTop:'20'}}>           
       <div className="navLine-wrap-left">
-        {/* <h2>银行卡认证状态显示</h2> */}
-        <Row>
+        <h2>车险认证状态显示</h2>
+        {/* <Row>
           <Col span="8">
             <FormItem {...formItemLayout} label="驾驶证姓名：">
               <Input value = {this.state.driverName} disabled />
@@ -162,7 +141,7 @@ var Tab3 = React.createClass({
             </FormItem>
           </Col>
          
-        </Row> 
+        </Row>  */}
         <Row>
           <Col span="8">
             <FormItem {...formItemLayout} label="驾驶证左面照">
@@ -172,6 +151,18 @@ var Tab3 = React.createClass({
           <Col span="8">
             <FormItem {...formItemLayout} label="驾驶证右面照">
             { this.state.driverRightImg ? <a href={this.state.driverRightImg} target="_blank"><img src={this.state.driverRightImg} style={{ width: 230 }} /></a> : <Input  value = "暂无" />}
+            </FormItem>
+          </Col>              
+        </Row>      
+        <Row>
+          <Col span="8">
+            <FormItem {...formItemLayout} label="驾驶证左面照">
+            { this.state.leftBackImg ? <a href={this.state.leftBackImg} target="_blank"><img src={this.state.leftBackImg} onClick={this.magnifyImg} style={{ width: 230 }} /></a> : <Input  value = "暂无" />}
+            </FormItem>
+          </Col>
+          <Col span="8">
+            <FormItem {...formItemLayout} label="驾驶证右面照">
+            { this.state.rightBackImg ? <a href={this.state.rightBackImg} target="_blank"><img src={this.state.rightBackImg} style={{ width: 230 }} /></a> : <Input  value = "暂无" />}
             </FormItem>
           </Col>              
         </Row>                              

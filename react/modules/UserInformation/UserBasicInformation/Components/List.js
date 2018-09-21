@@ -55,7 +55,7 @@ export default React.createClass({
     }, () => {
       this.refs.ReviewWin.refs.Tab1.setFieldsValue(record);
       this.setState({
-        recordSoure: result.data
+        recordSoure: record
       })
     });
   },
@@ -134,42 +134,6 @@ export default React.createClass({
     });
     this.fetch(params);
   },
-  changeStatus(title, record) {
-    var me = this;
-    var selectedRowKeys = me.state.selectedRowKeys;
-    var msg = "审核";
-    var tips = "您是否同意通过审核";    
-    if (title == "审核") {
-      var msg = title;
-      var tips = "您是否同意通过审核";
-    }
-    confirm({
-      title: tips,
-      onOk: function () {
-        Utils.ajaxData({
-          url: "/modules/manage/cl/cluser/userDetail.htm",
-          data: {
-            orderNo: record.orderNo
-          },
-          method: 'post',
-          callback: (result) => {
-            if (result.code == 200) {
-              Modal.success({
-                title: result.msg,
-              });
-              me.refreshList();
-            } else {
-              Modal.error({
-                title: result.msg,
-              });
-            }
-            me.refreshList();
-          }
-        });
-      },
-      onCancel: function () { }
-    });
-  },
   componentDidMount() {
     this.fetch();
   },
@@ -181,36 +145,6 @@ export default React.createClass({
     this.setState({
       selectedRowKeys: [record.id],
       selectedrecord: record
-    });
-  },
-  seach(title, record) {
-    let me = this;
-    confirm({
-      title: "是否确定查询",
-      onOk: function () {
-        Utils.ajaxData({
-          url: "/modules/manage/user/educationRequest.htm",
-          data: {
-            idCard: record.idNo,
-            name: record.loginName,
-          },
-          method: 'post',
-          callback: (result) => {
-            if (result.code == 200) {
-              Modal.success({
-                title: result.msg,
-              });
-            }else{
-              Modal.error({
-                title: result.msg,
-              });
-            }
-
-            me.refreshList();
-          }
-        });
-      },
-      onCancel: function () { }
     });
   },
   render() {

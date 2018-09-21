@@ -21,20 +21,16 @@ var AddUserWin = React.createClass({
   },
   componentWillReceiveProps(nextProps){  
     this.setState({
-      userId: nextProps.selectRecord.userId,
-      orderNo: nextProps.selectRecord.orderNo,
+      id: nextProps.selectRecord.id,
     })   
   },
   handleCancel() {
     this.props.form.resetFields();
     this.props.hideModal();
-    this.setState({
-      deviceImg:''
-    })
   },
   handleOk(e) {
-    var userId = this.state.userId;
-    var orderNo =  this.state.orderNo;
+    let me =this;
+    var id = this.state.id;
     var params = this.props.form.getFieldsValue().creditAmount;
     this.props.form.validateFields((errors, values) => {
       if (!!errors) {
@@ -49,8 +45,7 @@ var AddUserWin = React.createClass({
             url: '/modules/manage/rzorder/offer.htm',
             data: {
               'type':'update',
-              'orderNo':orderNo,
-              'userId':userId,
+              'id':id,
               'qoate':params
             },
             callback: (result) => {
@@ -58,7 +53,7 @@ var AddUserWin = React.createClass({
                 Modal.success({
                   title: result.msg,
                   onOk: () => {            
-                    this.handleCancel();
+                    me.handleCancel();
                   }
                 });
               } else {
@@ -96,39 +91,10 @@ var AddUserWin = React.createClass({
     };
     return (
       <Modal title={props.title} visible={props.visible} onCancel={this.handleCancel} width="600"  footer={modalBtns} >
-          <Form horizontal  form={this.props.form}>      
-          <Row>
+          <Form horizontal  form={this.props.form}>           
+          <Row>             
             <Col span="12">
-              <FormItem {...formItemLayout} label="车牌号：">
-                <Input {...getFieldProps('carNumber', { initialValue: '' }) } disabled />
-              </FormItem>
-            </Col>
-            <Col span="12">
-              <FormItem {...formItemLayout} label="发动机号：">
-                <Input {...getFieldProps('carEngineNumber', { initialValue: '' }) } disabled />
-              </FormItem>
-            </Col>           
-          </Row>
-          <Row>
-            <Col span="12">
-              <FormItem {...formItemLayout} label="车架号：">
-                <Input {...getFieldProps('carSelfNumber', { initialValue: '' }) } disabled />
-              </FormItem>
-            </Col>
-            <Col span="12">
-              <FormItem {...formItemLayout} label="保险公司：">
-                <Input {...getFieldProps('11', { initialValue: '' }) } disabled />
-              </FormItem>
-            </Col>
-          </Row>
-          <Row>           
-            <Col span="12">
-              <FormItem {...formItemLayout} label="险种：">
-                <Input {...getFieldProps('insuranceMain', { initialValue: '' }) } disabled />
-              </FormItem>
-            </Col>  
-            <Col span="12">
-              <FormItem {...formItemLayout} label="保险金额：">
+              <FormItem {...formItemLayout} label="报价金额：">
                 <Input {...getFieldProps('creditAmount',{ rules: [{required:true,message:'必填'}]}) } disabled={props.canEdit} />
               </FormItem>
             </Col>

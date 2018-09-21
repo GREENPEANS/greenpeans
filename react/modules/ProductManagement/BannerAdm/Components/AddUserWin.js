@@ -130,7 +130,7 @@ var AddUserWin = React.createClass({
     };
     const propss = {
       name: 'imgData',
-      action: '/modules/manage/banner/bannerImgUploadToOss.htm',
+      action: 'http://192.168.16.16:8082/modules/manage/banner/bannerImgUploadToOss.htm',
       headers: {
         authorization: 'authorization-text',
       },    
