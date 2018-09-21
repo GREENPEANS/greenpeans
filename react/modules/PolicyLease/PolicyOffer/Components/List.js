@@ -6,6 +6,7 @@ import {
   Tooltip
 } from 'antd';
 import AddPerson from './AddPerson';
+import CarInfo from './CarInfo';
 var confirm = Modal.confirm;
 const objectAssign = require('object-assign');
 
@@ -40,32 +41,13 @@ export default React.createClass({
   //新增跟编辑弹窗
   showModal(title, record, canEdit,orderNo) {
     var record = record;
-    var orderNo = orderNo;
-   
     this.setState({
       canEdit: canEdit,
       visible: true,
       title: title,
       record: record,
     }, () => {     
-      if(record.orderStatus==0){
-         record.orderStatus="待放款"
-      }else if (record.orderStatus==1) {
-         record.orderStatus="放款中"
-      }else if (record.orderStatus==2) {
-         record.orderStatus="待还款"
-      }else if (record.orderState==3) {
-         record.orderStatus="还款失败"
-      }else if (record.orderState==4) {
-         record.orderStatus="还款中"
-      }else if (record.orderState==5) {
-         record.orderStatus="还款成功"
-      }else if (record.orderState==6) {
-         record.orderStatus="还款失败"
-      }else{
-           record.orderStatus="-"
-      }
-      this.refs.ReviewWin.refs.Tab1.setFieldsValue(record);
+     // this.refs.ReviewWin.refs.Tab1.setFieldsValue(record);
       this.setState({
         recordSoure: record
       })
@@ -83,16 +65,6 @@ export default React.createClass({
       record: record,
       canEdit:canEdit
     });
-  },
-
-  //分页
-  handleTableChange(pagination, filters, sorter) {
-    const pager = this.state.pagination;
-    pager.current = pagination.current;
-    this.setState({
-      pagination: pager,
-    });
-    this.refreshList();
   },
 
   fetch(params = {}) {
@@ -126,21 +98,6 @@ export default React.createClass({
     });
   },
 
-  clearSelectedList() {
-    this.setState({
-      selectedRowKeys: [],
-    });
-  },
-
-  refreshList() {
-    var pagination = this.state.pagination;
-    var params = objectAssign({}, this.props.params, {
-      current: pagination.current,
-      pageSize: pagination.pageSize,
-    });
-    this.fetch(params);
-  },
-
   componentDidMount() {
     this.fetch();
   },
@@ -162,6 +119,12 @@ export default React.createClass({
     };
     const hasSelected = selectedRowKeys.length > 0;
     var columns = [{
+      title: '用户姓名',
+      dataIndex: 'phone',
+    },{
+      title: '用户手机号',
+      dataIndex: 'userName',
+    },{
       title: '车牌号',
       dataIndex: 'carNumber',
     }, {
@@ -206,11 +169,13 @@ export default React.createClass({
             (<a href="javascript:;">
               <Tooltip placement="bottomLeft" title="报价" >
                 <Button  className="zibtntwo" onClick={me.showAssignModal.bind(me, '报价',record, false)}><i className="icon iconfont icon-audit"></i></Button>        
-              </Tooltip></a>  )  
+              </Tooltip><span className="ant-divider"></span></a>  )  
             : 
             (<a href="javascript:;"></a>)
           }
-
+          <Tooltip placement="bottomLeft" title="查看车样" >
+            <Button  className="audit" onClick={me.showModal.bind(me, '查看车样',record, false)}><i className="icon iconfont icon-audit"></i></Button>        
+          </Tooltip>
         </div>
       }    
     },];
@@ -224,6 +189,8 @@ export default React.createClass({
           loading={this.state.loading}
           onChange={this.handleTableChange} />
         <AddPerson ref="AddPerson" visible={state.personVisible} title={state.title} hideModal={me.hideModal} selectRecord={state.record}
+          canEdit={state.canEdit}/> 
+        <CarInfo ref="CarInfo" visible={state.visible} title={state.title} hideModal={me.hideModal} selectRecord={state.record}
           canEdit={state.canEdit}/>  
       </div>
         

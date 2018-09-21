@@ -28,7 +28,7 @@ var Tab5 = React.createClass({
       userId: this.props.record.id,
     }
     Utils.ajaxData({
-      url: '/user/auth/getUserAuthDetail.htm',
+      url: '/user/auth/getUserDrivingInfo.htm',
       data: params,
       callback: (result) => {
         if (result.code == 200) {
@@ -46,7 +46,7 @@ var Tab5 = React.createClass({
             drivingLeftImg: data.drivingLeftImg,
             drivingRightImg: data.drivingRightImg,
             recordSoure: result.data.drivingInfo,
-            drivingSendDate: result.data.rivingSendDate
+            drivingSendDate: result.data.drivingSendDate
           })
         }else if(result.code == 400){                   
 
@@ -71,7 +71,7 @@ var Tab5 = React.createClass({
     return (
           <Form horizontal form={this.props.form} style={{marginTop:'20'}}>           
             <div className="navLine-wrap-left">
-              <h2>行驶证认证状态显示</h2>
+              <h2  className="margin">行驶证认证状态显示</h2>
               <Row>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="行驶证姓名：">

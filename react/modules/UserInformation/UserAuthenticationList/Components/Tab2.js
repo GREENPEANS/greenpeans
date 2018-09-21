@@ -41,19 +41,23 @@ var Tab2 = React.createClass({
         userId: this.props.record.id,
       }
     Utils.ajaxData({
-      url: '/user/auth/getUserAuthDetail.htm',
+      url: '/user/auth/getUserPolicyInfo.htm',
       data: params,
       callback: (result) => {
         if (result.code == 200) {
           let data = result.data.policyInfo;
+          console.log(data)
           this.setState({
-            insuranceCompany: data.insuranceCompany,
+            drivingBrand: data.drivingBrand,
+            policyMan: data.policyMan,
             insuranceImg: data.insuranceImg,
-            policyNumber: data.policyNumber,
+            drivingBrand:data.drivingBrand,
+            insuranceCompany:data.insuranceCompany,
+            drivingCarType:data.drivingCarType,
             policyLimit:data.policyLimit,
-            policyOperator:data.policyOperator,
-            policyStatus:data.policyStatus,
-            policyTerm:data.policyTerm
+            insuranceType:data.insuranceType,
+            policyTerm:data.policyTerm,
+            
           })
         }else if(result.code == 400){
 
@@ -82,16 +86,16 @@ var Tab2 = React.createClass({
     return (
       <Form horizontal form={this.props.form} style={{marginTop:'20'}}>           
       <div className="navLine-wrap-left">
-        <h2>保单认证状态显示</h2>
+        <h2  className="margin">保单认证状态显示</h2>
         <Row>
           <Col span="8">
             <FormItem {...formItemLayout} label="被保人姓名：">
-              <Input value = {this.state.driverName} disabled />
+              <Input value = {this.state.policyMan} disabled />
             </FormItem>
           </Col>
           <Col span="8">
             <FormItem {...formItemLayout} label="厂牌型号：">
-              <Input value = {this.state.dirverSex} disabled />
+              <Input value = {this.state.drivingBrand} disabled />
             </FormItem>
           </Col>
           <Col span="8">
@@ -105,24 +109,20 @@ var Tab2 = React.createClass({
             <FormItem {...formItemLayout} label="保单编号：">
               <Input value = {this.state.policyNumber} disabled />
             </FormItem>
-          </Col>
-          <Col span="8">
-            <FormItem {...formItemLayout} label="保单审核人：">
-              <Input value = {this.state.policyOperator} disabled />
-            </FormItem>
-          </Col>
+          </Col>        
           <Col span="8">
             <FormItem {...formItemLayout} label="保险公司：">
               <Input value = {this.state.insuranceCompany} disabled />
             </FormItem>
           </Col>
-        </Row>            
-        <Row>
           <Col span="8">
             <FormItem {...formItemLayout} label="险种：">
-              <Input  value = {this.state.dirverLimiteDate}  disabled />
+              <Input  value = {this.state.insuranceType}  disabled />
             </FormItem>
           </Col>
+        </Row>            
+        <Row>
+         
           <Col span="8">
             <FormItem {...formItemLayout} label="保单额度：">
               <Input value = {this.state.policyLimit} disabled />
@@ -130,24 +130,29 @@ var Tab2 = React.createClass({
           </Col>
           <Col span="8">
             <FormItem {...formItemLayout} label="车辆种类：">
-              <Input value = {this.state.dirverLicensedCarType} disabled />
+              <Input value = {this.state.drivingCarType} disabled />
             </FormItem>
           </Col>
          
         </Row> 
-        <Row>
+        {/* <Row>
           <Col span="8">
             <FormItem {...formItemLayout} label="保单审核状态：">
               <Input  value = {this.state.dirverLimiteDate}  disabled />
             </FormItem>
           </Col>
-        </Row> 
+        </Row>  */}
+         {/* <Col span="8">
+            <FormItem {...formItemLayout} label="保单审核人：">
+              <Input value = {this.state.policyOperator} disabled />
+            </FormItem>
+          </Col> */}
         <Row>
-          <Col span="8">
+          {/* <Col span="8">
             <FormItem {...formItemLayout} label="理赔照片：">
             { this.state.insuranceImg ? <a href={this.state.insuranceImg} target="_blank"><img src={this.state.insuranceImg} onClick={this.magnifyImg} style={{ width: 230 }} /></a> : <Input  value = "暂无" />}
             </FormItem>
-          </Col>
+          </Col> */}
           <Col span="8">
             <FormItem {...formItemLayout} label="保单照片：">
             { this.state.insuranceImg ? <a href={this.state.insuranceImg} target="_blank"><img src={this.state.insuranceImg} style={{ width: 230 }} /></a> : <Input  value = "暂无" />}

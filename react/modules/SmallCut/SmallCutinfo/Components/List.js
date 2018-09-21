@@ -170,7 +170,19 @@ export default React.createClass({
           return "审核不通过"
         }
       }
-    }, {
+    },{
+      title: '发券状态',
+      dataIndex: "isSend",
+      render: (text,record) =>{
+        if(record.isSend == "1"){
+          return "已发券"
+        }else if(record.isSend == "0"){
+          return "未发券"
+        }else{
+          return "-"
+        }
+      }
+    },{
       title: '操作',
       render: (text, record,orderNo) => {
         return <div>
@@ -182,10 +194,13 @@ export default React.createClass({
             : 
             (<a href="javascript:;"></a>)
           }
-          
-          <Tooltip placement="bottomLeft" title="发放券" >
-            <Button className="zibtnone" onClick={me.showModal.bind(me, '发放券', record, false,orderNo)}><i className="icon iconfont icon-icon-chakanxq"></i></Button>        
-          </Tooltip>          
+          {record.isSend == "0" ?
+            (<a href="javascript:;"><Tooltip placement="bottomLeft" title="发放券" >
+              <Button className="zibtnone" onClick={me.showModal.bind(me, '发放券', record, false,orderNo)}><i className="icon iconfont icon-icon-chakanxq"></i></Button>        
+            </Tooltip></a>)
+            :
+            (<a href="javascript:;"></a>)
+          }   
         </div>
       }    
     },];

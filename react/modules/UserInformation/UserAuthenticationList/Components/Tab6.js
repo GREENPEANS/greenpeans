@@ -41,7 +41,7 @@ var Tab6 = React.createClass({
         userId: this.props.record.id,
       }
     Utils.ajaxData({
-      url: '/user/auth/getUserAuthDetail.htm',
+      url: '/user/auth/getUserBaseInfo.htm',
       data: params,
       callback: (result) => {
         if (result.code == 200) {
@@ -76,28 +76,10 @@ var Tab6 = React.createClass({
                 span: 14
             },
         };
-    const formItemLayout2 = {
-            labelCol: {
-                span: 5
-            },
-            wrapperCol: {
-                span: 19
-            },
-        };
-        var aItem = [];
-        if(state.recordSoure && state.recordSoure.workImgArr){
-          aItem = [];
-          for(var i = 0; i < state.recordSoure.workImgArr.length; i++){
-            aItem.push(<a style={{ marginRight: '10px'}} href={state.recordSoure.workImgArr[i]} target="_blank"><img src={state.recordSoure.workImgArr[i]} style={{width:150,height:150}} /></a>);
-          }
-        }else{
-          aItem.push(<span>暂无</span>)
-        }
-        
     return (
           <Form horizontal form={this.props.form} style={{marginTop:'20'}}>           
             <div className="navLine-wrap-left">
-              <h2>身份证认证状态显示</h2>
+              <h2  className="margin">身份证认证状态显示</h2>
               <Row>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="身份证号">

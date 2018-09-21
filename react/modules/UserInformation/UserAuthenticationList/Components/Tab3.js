@@ -40,16 +40,17 @@ var Tab3 = React.createClass({
         userId: this.props.record.id,
       }
     Utils.ajaxData({
-      url: '/user/auth/getUserAuthDetail.htm',
+      url: '/user/auth/getUserCarInsuranceInfo.htm',
       data: params,
       callback: (result) => {
         if (result.code == 200) {
-          this.setState({driverLeftImg: result.data.carInsuranceInfo.leftFontImg});
-          this.setState({driverRightImg: result.data.carInsuranceInfo.rightFontImg}); 
-          this.setState({leftBackImg: result.data.carInsuranceInfo.leftBackImg});
-          this.setState({rightBackImg: result.data.carInsuranceInfo.rightBackImg}); 
-          
-          this.setState({recordSoure: result.data.carInsuranceInfo })
+          this.setState({
+            driverLeftImg: result.data.carInsuranceInfo.leftFontImg,
+            driverRightImg: result.data.carInsuranceInfo.rightFontImg,
+            leftBackImg: result.data.carInsuranceInfo.leftBackImg,
+            rightBackImg: result.data.carInsuranceInfo.rightBackImg,
+            recordSoure: result.data.carInsuranceInfo
+          })
         }else if(result.code == 400){
 
         }
@@ -73,75 +74,10 @@ var Tab3 = React.createClass({
                 span: 14
             },
         };
-    const formItemLayout2 = {
-            labelCol: {
-                span: 5
-            },
-            wrapperCol: {
-                span: 19
-            },
-        };
-        var aItem = [];
-        if(state.recordSoure && state.recordSoure.workImgArr){
-          aItem = [];
-          for(var i = 0; i < state.recordSoure.workImgArr.length; i++){
-            aItem.push(<a style={{ marginRight: '10px'}} href={state.recordSoure.workImgArr[i]} target="_blank"><img src={state.recordSoure.workImgArr[i]} style={{width:150,height:150}} /></a>);
-          }
-        }else{
-          aItem.push(<span>暂无</span>)
-        }
-        
     return (
       <Form horizontal form={this.props.form} style={{marginTop:'20'}}>           
       <div className="navLine-wrap-left">
-        <h2>车险认证状态显示</h2>
-        {/* <Row>
-          <Col span="8">
-            <FormItem {...formItemLayout} label="驾驶证姓名：">
-              <Input value = {this.state.driverName} disabled />
-            </FormItem>
-          </Col>
-          <Col span="8">
-            <FormItem {...formItemLayout} label="驾驶员性别：">
-              <Input value = {this.state.dirverSex} disabled />
-            </FormItem>
-          </Col>
-          <Col span="8">
-            <FormItem {...formItemLayout} label="所属国籍：">
-              <Input value = {this.state.dirverCountry} disabled />
-            </FormItem>
-          </Col>
-        </Row>
-        <Row>
-          <Col span="8">
-            <FormItem {...formItemLayout} label="地址：">
-              <Input value = {this.state.dirverAddr} disabled />
-            </FormItem>
-          </Col>
-          <Col span="8">
-            <FormItem {...formItemLayout} label="	出生日期：">
-              <Input value = {this.state.dirverBorthDate} disabled />
-            </FormItem>
-          </Col>
-          <Col span="8">
-            <FormItem {...formItemLayout} label="	领证日期：">
-              <Input value = {this.state.dirverGetCertDate} disabled />
-            </FormItem>
-          </Col>
-        </Row>            
-        <Row>
-          <Col span="8">
-            <FormItem {...formItemLayout} label="有限期效：">
-              <Input  value = {this.state.dirverLimiteDate}  disabled />
-            </FormItem>
-          </Col>
-          <Col span="8">
-            <FormItem {...formItemLayout} label="	准驾车型：">
-              <Input value = {this.state.dirverLicensedCarType} disabled />
-            </FormItem>
-          </Col>
-         
-        </Row>  */}
+        <h2  className="margin">车险认证状态显示</h2>
         <Row>
           <Col span="8">
             <FormItem {...formItemLayout} label="驾驶证左面照">

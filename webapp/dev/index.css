@@ -57,7 +57,7 @@
   margin-bottom: 0;
   margin-left: 230px;
   border: none;
-  min-height: 50px;
+  min-height: 70px;
   border-radius: 0;
 }
 .layout-top-nav .main-header > .navbar {
@@ -67,6 +67,9 @@
   background: rgba(255, 255, 255, 0.2);
   border-color: transparent;
 }
+.margin{
+    margin:  15px 0px;
+}
 td div button{
     padding: 0px 15px!important;
     background: #00aaee
@@ -74,6 +77,7 @@ td div button{
 .ant-table td{
     padding: 10px 8px!important;
 }
+
 .audit{
     color: #87d068!important;
     border-color: #87d068!important;
@@ -139,7 +143,7 @@ td div button{
     float: left;
     background-color: transparent;
     background-image: none;
-    padding: 8px 15px;
+    padding: 18px 15px;
     font-family: fontAwesome;
     color: #fff;
     font-size: 20px;
@@ -202,12 +206,12 @@ td div button{
 }
  
 .main-header .logo {
-    background-color: #222D32;
+    background-color: #223443;
     color: #fff;
     border-bottom: 0 solid transparent;
 }
 .main-header .navbar {
-    background-color: #222D32;
+    background-color: #223443;
 }
 .app-header {
     height: 60px;
@@ -267,7 +271,7 @@ td div button{
 .right-block {
     margin-right: 14px;
     color: #fff;
-    line-height:45px;
+    line-height:70px;
 }
 .right-block a{
   color:#fff;
@@ -341,9 +345,8 @@ td div button{
 .leftSide {
     float: left;
     width: 230px;
-    padding-top: 10px;
     color: #a6a8b1;
-    background-color: #222D32;
+    background-color: #223443;
         -webkit-transition: -webkit-transform .3s ease-in-out,width .3s ease-in-out;
     -moz-transition: -moz-transform .3s ease-in-out,width .3s ease-in-out;
     -o-transition: -o-transform .3s ease-in-out,width .3s ease-in-out;
@@ -380,7 +383,7 @@ td div button{
 
 .ant-menu {
     border: 0!important;
-    color: #B8C7CE!important;
+    color: #e3eaec!important;
     font-size: 14px!important;
     background: #222D32!important;
 }
@@ -394,7 +397,7 @@ td div button{
 }*/
 
 .ant-menu, .ant-menu.ant-menu-sub {
-    background: #2C3B41!important;
+    background: #17272d!important;
 }
 
 .ant-menu-submenu-open .ant-menu-submenu-title{
@@ -484,7 +487,7 @@ td div button{
     border-radius: 4px; 
 }
 
-.menu-text{margin-left: 7px;}
+.menu-text{margin-left: 20px;}
 /*header right*/
 
 
@@ -1272,10 +1275,9 @@ td div button{
 }
 .logo-lg{
     background: url(./images/logo.png) center no-repeat;
-    background-size: 80%;
+    background-size: 70%;
     width: 178px;
-    height: 40px;
-    margin-top: 8px;
+    height: 70px;
 }
 .system-name{
     font-size: 17px;

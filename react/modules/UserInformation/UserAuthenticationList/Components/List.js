@@ -37,7 +37,7 @@ export default React.createClass({
       record: record,
     }, () => {
       Utils.ajaxData({
-        url: '/user/auth/getUserAuthDetail.htm',      
+        url: '/user/auth/getUserBankInfo.htm',      
         data: {
           userId: record.id
         },
@@ -117,11 +117,6 @@ export default React.createClass({
           pagination
         });
       }
-    });
-  },
-  clearSelectedList() {
-    this.setState({
-      selectedRowKeys: [],
     });
   },
   refreshList() {
@@ -254,8 +249,7 @@ export default React.createClass({
               <div style={{ textAlign: "left" }}>
                   <Tooltip placement="bottomLeft" title="查看详情" >
                     <Button className="particulars"  onClick={me.showModal.bind(me, '查看详情', record, false)}><i className="icon iconfont icon-icon-chakanxq"></i></Button>
-                  </Tooltip>  
-                  
+                  </Tooltip>                   
               </div>
           )
       }

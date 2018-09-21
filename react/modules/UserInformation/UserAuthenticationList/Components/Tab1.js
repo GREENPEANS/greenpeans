@@ -48,7 +48,7 @@ var Tab1 = React.createClass({
     return (
           <Form horizontal form={this.props.form} style={{marginTop:'20'}}>
             <div className="navLine-wrap-left">
-              <h2>银行卡认证状态显示</h2>
+              <h2 className="margin">银行卡认证状态显示</h2>
               <Row>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="开户姓名：">

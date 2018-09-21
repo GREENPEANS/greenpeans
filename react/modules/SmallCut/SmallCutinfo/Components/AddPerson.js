@@ -35,9 +35,10 @@ var AddUserWin = React.createClass({
     this.props.hideModal();
   },
   handleNo(){
+    let me = this;
     const record = this.state.nextProps;
     confirm({
-      title: '您是否确认通过审核？',
+      title: '您是否拒绝通过审核？',
       content: '请确认',
       onOk() {
         Utils.ajaxData({
@@ -51,7 +52,7 @@ var AddUserWin = React.createClass({
               Modal.success({
                 title: result.msg,
                 onOk: () => {            
-                  this.handleCancel();
+                  me.handleCancel();
                 }
               });
             } else {
