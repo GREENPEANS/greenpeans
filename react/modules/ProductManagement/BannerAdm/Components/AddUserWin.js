@@ -22,22 +22,22 @@ var AddUserWin = React.createClass({
     return {
       status: {},
       formData: {},
-      imgPath: ''
+      imgPath: '',
+      fimhPath:'',
     };
-    
   },
+  
   componentWillReceiveProps(nextProps){  
-   // console.log(nextProps)
     this.setState({
       recordSoure: nextProps.record,
-      imgPath :nextProps.record&& nextProps.record.imgPath
+      fimhPath :nextProps.record && nextProps.record.imgPath
     })   
   },
   handleCancel() {
     this.props.form.resetFields();
     this.props.hideModal();
     this.setState({
-      deviceImg:''
+      imgPath:''
     })
   },
   handleOk(e) {
@@ -70,7 +70,6 @@ var AddUserWin = React.createClass({
         data: data,
         callback: (result) => {
           if (result.code == 200) {
-            console.log("2222")
             Modal.success({
               title: result.msg,
               onOk: () => {
@@ -81,7 +80,6 @@ var AddUserWin = React.createClass({
               }
             });
           } else {
-            console.log("1111")
             Modal.error({
               title: result.msg,
             });
@@ -91,12 +89,17 @@ var AddUserWin = React.createClass({
     });
   },
   handleChange(info){   
-    if (info.file.status !== 'uploading') {             
+    if (info.file.status !== 'uploading') {   
+      console.log("uploading")          
       this.setState({
         imgPath:info.file.response.data
       });
     }
     if (info.file.status === 'done') {
+      this.setState({
+        imgPath:info.file.response.data
+      });
+      console.log("done")
       if(info.file.response.code == "200"){
         message.success(`${info.file.name} ${info.file.response.msg}`);
       }else {
@@ -172,8 +175,9 @@ var AddUserWin = React.createClass({
            
             <Row>
                 <Col  span="12">
-                  <FormItem {...formItemLayout} label="图片路径：">                    
-                  <img src={this.state.imgPath} style={{ width: 230 }} /> 
+                  <FormItem {...formItemLayout} label="图片路径：">        
+                  {this.state.imgPath == '' ? (<img src={this.state.fimhPath} style={{ width: 230 }} /> ) :
+                  (<img src={this.state.imgPath} style={{ width: 230 }} /> )}                                              
                   <br />
                     <Upload {...propss} onChange={this.handleChange}>
                       <Button>

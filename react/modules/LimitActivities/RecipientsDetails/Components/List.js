@@ -157,8 +157,7 @@ export default React.createClass({
         }, {
             title: '使用状态',
             dataIndex: 'status',
-            render:(text,record) =>{
-                
+            render:(text,record) =>{            
                 var useTime = '使用时间：' + record.useTime;
                 var orderNo = '关联订单：' + record.orderNo;
                 if (record.useTime == null || record.useTime == ""){
@@ -170,11 +169,19 @@ export default React.createClass({
                 if(text == 0){
                     let st = '使用状态：未使用';
                     let msg = st + '  ' + useTime + '  '+orderNo 
-                    return msg; 
+                    return <div>
+                        <span>{st}</span><br/>
+                        <span>{useTime}</span><br/>
+                        <span>{orderNo}</span>
+                    </div> 
                 }else if (text == 1){
                     let st = '使用状态：使用';
                     let msg = st + '  ' + useTime + '   '+orderNo 
-                    return msg;
+                    return <div>
+                        <span>{st}</span><br/>
+                        <span>{useTime}</span><br/>
+                        <span>{orderNo}</span>
+                    </div>;
                 }
             }
         }]

@@ -27,7 +27,7 @@ export default React.createClass({
     };
   },
   componentWillReceiveProps(nextProps, nextState) {
-    this.clearSelectedList();
+   // this.clearSelectedList();
     this.fetch(nextProps.params);
   },
   hideModal() {
@@ -36,7 +36,6 @@ export default React.createClass({
       visibleaw: false,
       personVisible:false
     });
-    this.refreshList();
   },
   //新增跟编辑弹窗
   showModal(title, record, canEdit,orderNo) {
@@ -147,13 +146,11 @@ export default React.createClass({
       dataIndex: 'status',
       render: (text,record) =>{
         if (record.status == "0"){
-          return "待审核"
+          return <span className="nbtn wrz">待审核</span>
         }else if (record.status == "1"){
-          return "审核通过"
+          return <span className="nbtn normal">审核通过</span>
         }else if(record,status == "3"){
-          return "未通过"
-        }else if(record,status == "4"){
-          return "完成"
+          return <span className="nbtn blacklist">未通过</span>
         }else{
           return "-"
         }
@@ -168,13 +165,13 @@ export default React.createClass({
           {record.status == "0"  ? 
             (<a href="javascript:;">
               <Tooltip placement="bottomLeft" title="报价" >
-                <Button  className="zibtntwo" onClick={me.showAssignModal.bind(me, '报价',record, false)}><i className="icon iconfont icon-audit"></i></Button>        
+                <Button  className="zibtntwo" onClick={me.showAssignModal.bind(me, '报价',record, false)}><i className="icon iconfont icon-wogoumaidexinxi"></i></Button>        
               </Tooltip><span className="ant-divider"></span></a>  )  
             : 
             (<a href="javascript:;"></a>)
           }
           <Tooltip placement="bottomLeft" title="查看车样" >
-            <Button  className="audit" onClick={me.showModal.bind(me, '查看车样',record, false)}><i className="icon iconfont icon-audit"></i></Button>        
+            <Button  className="audit" onClick={me.showModal.bind(me, '查看车样',record, false)}><i className="icon iconfont icon-cheliang"></i></Button>        
           </Tooltip>
         </div>
       }    

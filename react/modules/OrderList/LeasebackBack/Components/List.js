@@ -162,11 +162,13 @@ export default React.createClass({
         dataIndex: 'status',
         render: (text, record)=>{
           if (record.status == 1){
-            return "已处理"
-          }else if (record.state == 2){
-            return "已拒绝"
-          }else if (record.state == 3){
-            return "待处理"
+            return <span className="nbtn normal">已处理</span>
+          }else if (record.status == 2){
+            return <span className="nbtn blacklist">已拒绝</span>
+          }else if (record.status == 0){
+            return <span className="nbtn wrz">待处理</span>
+          }else{
+            return "-"
           }
         }
     }, {

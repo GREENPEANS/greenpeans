@@ -15,9 +15,23 @@ const RangePicker = DatePicker.RangePicker;
 let SeachForm = React.createClass({
   getInitialState() {
         return {
-            
+          roleList: [],
         }
-    },
+  },
+  componentDidMount(){
+    var me = this ;
+    Utils.ajaxData({
+      url: '/modules/manage/rzorder/company.htm',
+      method: 'post', 
+      type: 'json',
+      callback: (result) => {
+        var items  = result.data.map((item)=>{
+          return (<Option key={item.id} value={String(item.id)} title={item.companyName}>{item.companyName}</Option>);
+        });
+        me.setState({roleList:items});
+      }
+    });  
+  },  
   handleQuery() {
     var params = this.props.form.getFieldsValue();
     if(params.Time){
@@ -72,11 +86,8 @@ let SeachForm = React.createClass({
             </Select>
         </FormItem>
         <FormItem label="保险公司:">
-              <Select style={{ width: 100 }} {...getFieldProps('company')} placeholder='请选择...'>
-                  <Option value="15">15</Option>
-                  <Option value="30">30</Option>
-                  <Option value="45">45</Option>
-                  <Option value="60">60</Option>
+              <Select style={{ width: 100 }} {...getFieldProps('InsuranceCompanyId')} placeholder='请选择...'>
+                 {this.state.roleList}
               </Select>
         </FormItem>
         <FormItem label="是否报价:">

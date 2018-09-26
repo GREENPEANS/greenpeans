@@ -41,7 +41,7 @@ var Tab2 = React.createClass({
   },
   // 请求
   fetch(params = {}) {
-    console.log(this.props.record.orderNo);
+    //console.log(this.props.record.orderNo);
     this.setState({
       loading: true
     });
@@ -89,49 +89,56 @@ var Tab2 = React.createClass({
     });
     this.fetch(params);
   },
-  manualPayments(title, record) {
-    
-    let me = this;
-    let tips = "您是否同意扣款?"
-    confirm({
-      title: title,
-      content: tips,
-      onOk() {
-        Utils.ajaxData({
-          url: "/modules/manage/yeepay/optionYeepay.htm",
-          data: {
-            userId : record.userId,
-            orderPayWay: 2,
-            issms : false,
-            stageType : 1,
-            orderNo: record.orderNo,
-            amount: record.moneyMonthPay,
-            stageNumber : record.stageNumber
-          },
-          method: 'post',
-          callback: (result) => {
-            if (result.code == 200) {
-              Modal.success({
-                title: result.msg,
-              });
-              this.setState({
-                loading: true
-              });
-            } else {
-              Modal.error({
-                title: result.msg,
-              });
-            }
-            this.setState({
-              loading: true
-            });
-          }
-        });
+  manualPayments(title, record) {   
+    Utils.ajaxData({
+      url: "/modules/manage/hzorder/hzManagerQueryPayAmount.htm",
+      data: {
+        userId : record.userId,
+        orderNo: record.orderNo,
       },
-      onCancel() {
-        console.log('Cancel');
-      },
-    });
+      method: 'post',
+      callback: (result) => {
+        if (result.code == 200) {
+          let me = this;
+          let tips = "您是否同意扣款"+result.data.amount+"元?";
+          confirm({
+            title: title,
+            content: tips,
+            onOk() {
+              Utils.ajaxData({
+                url: "/modules/manage/hzorder/hzManagerOrderPay.htm",
+                data: {
+                  userId : record.userId,
+                  orderNo: record.orderNo,
+                  amount:result.data.amount
+                },
+                method: 'post',
+                callback: (result) => {
+                  if (result.code == 200) {
+                    Modal.success({
+                      title: result.msg,
+                    });
+                    me.setState({
+                      loading: true
+                    });
+                  } else {
+                    Modal.error({
+                      title: result.msg,
+                    });
+                  }
+                }
+              });
+            },
+            onCancel() {
+            },
+          });
+        } else {
+          Modal.error({
+            title: result.msg,
+          });
+      }
+    }
+    });        
   },
   render() {
     var me = this;
@@ -146,33 +153,30 @@ var Tab2 = React.createClass({
       title: '订单号',
       dataIndex: "orderNo",
     }, {
-      title: '回租期限',
+      title: '回租期限(天)',
       dataIndex: "stageCounts",
     }, {
       title: '第几期',
       dataIndex: "stageNumber",
     }, {
-      title: '租金总金额',
-      dataIndex: "stageTotalCharge",
-    }, {
-      title: '每期利息',
+      title: '每期利息(元)',
       dataIndex: "stageCurrentCharge",
     }, {
-      title: '期供',
-      dataIndex: "moneyMonthPay",
+      title: '期供(元)',
+      dataIndex: "monthAmount",
     }, {
-      title: '本金',
+      title: '本金(元)',
       dataIndex: "loanAmount",
     }, {
       title: '支付状态',
-      dataIndex: "stagePaymentStatus",
+      dataIndex: "payStatus",
       render: (text, record)=>{
-        if(record.stagePaymentStatus==0){
-          return "支付失败"
-        }else if(record.stagePaymentStatus==1){
-          return "支付成功"
-        }else if(record.stagePaymentStatus==2){
-          return "未支付"
+        if(record.payStatus==0){
+          return <span className="nbtn blacklist">未支付</span>
+        }else if(record.payStatus==1){
+          return <span className="nbtn normal">支付成功</span>
+        }else if(record.payStatus==2){
+          return <span className="nbtn meiZf">支付失败</span>
         }else{
           return "-"
         }
@@ -184,10 +188,10 @@ var Tab2 = React.createClass({
       title: '是否逾期',
       dataIndex: "isOverdue",
       render: (text, record)=>{
-        if(record.stageHasOverdue==0){
-          return "否"
-        }else if(record.stageHasOverdue==1){
-          return "是"
+        if(record.isOverdue==0){
+          return <span className="nbtn blacklist">否</span>
+        }else if(record.isOverdue==1){
+          return <span className="nbtn normal">是</span>
         }else{
           return "-"
         }
@@ -200,14 +204,14 @@ var Tab2 = React.createClass({
       dataIndex: "overdueAmount",
     }, {
       title: '还款状态',
-      dataIndex: "stagePayType",
+      dataIndex: "payType",
       render: (text, record)=>{
-        if(record.stagePayType==0){
-          return "正常还款"
-        }else if(record.stagePayType==1){
-          return "提前还款"
-        }else if(record.stagePayType==2){
-          return "本期作废"
+        if(record.payType==0){
+          return <span className="nbtn normal">正常还款</span>
+        }else if(record.payType==1){
+          return <span className="nbtn RZbtn">提前还款</span>
+        }else if(record.payType==2){
+          return <span className="nbtn blacklist">本期作废</span>
         }else{
           return "-"
         }
@@ -216,11 +220,9 @@ var Tab2 = React.createClass({
       title: '操作',
       render: (text, record,id) => {
         return <div>
-          {record.stagePaymentStatus==2 ? (<a href="javascript:;"><Tooltip placement="bottomLeft" title="手动扣款" >
+          {record.payStatus==0 ? (<a href="javascript:;"><Tooltip placement="bottomLeft" title="手动扣款" >
             <Button className="zibtnone"  onClick={me.manualPayments.bind(me, '手动扣款',record, true)}><i className="icon iconfont icon-woyaohuankuan"></i></Button>        
-          </Tooltip></a>) :("-")}  
-          <span className="ant-divider"></span>
-                                  
+          </Tooltip></a>) :("-")}                                   
         </div>
       }    
     }];

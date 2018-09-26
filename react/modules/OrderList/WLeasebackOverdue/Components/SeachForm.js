@@ -73,12 +73,6 @@ let SeachForm = React.createClass({
               <Option value="6">还款失败</Option>
           </Select>
         </FormItem>
-        <FormItem label="逾期状态:">
-          <Select style={{ width: 100 }} {...getFieldProps('isOverdue')} placeholder='请选择...'>
-              <Option value="0">未逾期</Option>
-              <Option value="1">逾期</Option>
-          </Select>
-        </FormItem>
         <FormItem label="还款日期：">
           <RangePicker showTime format="yyyy/MM/dd HH:mm:ss"  disabledDate={this.disabledDate} {...getFieldProps('Time', { initialValue:'' }) } />
         </FormItem>

@@ -162,22 +162,25 @@ export default React.createClass({
       title: '审核状态',
       dataIndex: 'status',
       render: (text, record)=>{ 
-        if(record.status==0){
-          return "审核中"
-        }else if (record.status==1) {
-          return "审核通过"
-        }else if (record.status==2) {
-          return "审核不通过"
+        if (record.status == 0){
+          return <span className="nbtn wrz">待审核</span>
+        }else if (record.status == 1){
+          return <span className="nbtn normal">审核通过</span>
+        }else if(record.status == 2){
+          return <span className="nbtn blacklist">审核不通过</span>
+        }else{
+          return "-"
         }
+       
       }
     },{
       title: '发券状态',
       dataIndex: "isSend",
       render: (text,record) =>{
         if(record.isSend == "1"){
-          return "已发券"
+          return <span className="nbtn normal">已发券</span>
         }else if(record.isSend == "0"){
-          return "未发券"
+          return <span className="nbtn wrz">未发券</span>
         }else{
           return "-"
         }
@@ -194,9 +197,9 @@ export default React.createClass({
             : 
             (<a href="javascript:;"></a>)
           }
-          {record.isSend == "0" ?
+          {record.isSend == "0" || record.status == "0"?
             (<a href="javascript:;"><Tooltip placement="bottomLeft" title="发放券" >
-              <Button className="zibtnone" onClick={me.showModal.bind(me, '发放券', record, false,orderNo)}><i className="icon iconfont icon-icon-chakanxq"></i></Button>        
+              <Button className="zibtnone" onClick={me.showModal.bind(me, '发放券', record, false,orderNo)}><i className="icon iconfont icon-wodeyouhuiquan1"></i></Button>        
             </Tooltip></a>)
             :
             (<a href="javascript:;"></a>)

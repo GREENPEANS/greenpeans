@@ -187,10 +187,10 @@ export default React.createClass({
       title: '适用业务',
       dataIndex: "businessType",
       render:(text,record) =>{
-        if(record.businessType == "0"){
-          return "融租"
-        }else if(record.businessType == "1"){
-          return "回租"
+        if(record.businessType == 0){
+          return <span className="nbtn HZbtn">融租</span>
+        }else if(record.businessType == 1){
+          return <span className="nbtn RZbtn">回租</span>
         }
       }
     }, {
@@ -203,14 +203,11 @@ export default React.createClass({
         return record.couponValue +'%';
       }
     }, {
-      title: '适用范围',
+      title: '备注',
       dataIndex: 'remark',
     }, {
       title: '有效期(天)',
       dataIndex: "validityDate"
-    }, {
-      title: '发放规则',
-      dataIndex: "createTime"
     }, {
       title: '发放时间',
       dataIndex: "grantTime"

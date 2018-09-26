@@ -74,7 +74,7 @@ let SeachForm = React.createClass({
                 <Option value="6">还款失败</Option>
             </Select>
         </FormItem>
-        <FormItem label="回租期限:">
+        <FormItem label="回租期限(天):">
             <Select style={{ width: 100 }} {...getFieldProps('loanTerm')} placeholder='请选择...'>
                 <Option value="15">15</Option>
                 <Option value="30">30</Option>

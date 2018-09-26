@@ -208,7 +208,7 @@ var AddUserWin = React.createClass({
             </Row>
             <Row>
               <Col span="12"> 
-                <FormItem {...formItemLayout} label="发放规则：" >
+                <FormItem {...formItemLayout} label="备注：" >
                   <Input type="textarea" style={{height:200}} placeholder="" {...getFieldProps('remark', { }) } autoComplete="off" />
                 </FormItem>
               </Col>                

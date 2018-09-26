@@ -67,6 +67,7 @@ var AddUserWin = React.createClass({
     });
   },
   handleOk(e) {
+    let me = this;
     const record = this.state.nextProps;
     confirm({
       title: '您是否确认通过审核？',
@@ -83,7 +84,7 @@ var AddUserWin = React.createClass({
               Modal.success({
                 title: result.msg,
                 onOk: () => {            
-                  this.handleCancel();
+                  me.handleCancel();
                 }
               });
             } else {
@@ -122,24 +123,24 @@ var AddUserWin = React.createClass({
                 <Row>                   
                     <Col span="12">
                       <FormItem {...formItemLayout} label="理赔图片1：">                          
-                          <a href={this.state.imgUrl1} target='_blank'><img src={this.state.imgUrl1}  style={{width:300}} alt=""/></a>
+                          {this.state.imgUrl1 == null ? ("暂无照片"):(<a href={this.state.imgUrl1} target='_blank'><img src={this.state.imgUrl1}  style={{width:300}} alt=""/></a>)}
                       </FormItem>
                     </Col>
                     <Col span="12">
                       <FormItem {...formItemLayout} label="理赔图片2：">
-                          <a href={this.state.imgUrl2} target='_blank'><img src={this.state.imgUrl2}  style={{width:300}} alt=""/></a>
+                          {this.state.imgUrl2 == null ? ("暂无照片"):<a href={this.state.imgUrl2} target='_blank'><img src={this.state.imgUrl2}  style={{width:300}} alt=""/></a>}
                       </FormItem>
                     </Col>
                 </Row>  
                 <Row>                   
                     <Col span="12">
                       <FormItem {...formItemLayout} label="理赔图片3：">
-                            <a href={this.state.imgUrl3} target='_blank'><img src={this.state.imgUrl3}   style={{width:300}}  alt=""/></a>  
+                          {this.state.imgUrl3 == null ? ("暂无照片"):<a href={this.state.imgUrl3} target='_blank'><img src={this.state.imgUrl3}  style={{width:300}} alt=""/></a>}    
                       </FormItem>
                     </Col>
                     <Col span="12">
                       <FormItem {...formItemLayout} label="理赔图片4：">
-                            <a href={this.state.imgUrl4} target='_blank'><img src={this.state.imgUrl4}  style={{width:300}}  alt=""/></a>
+                          {this.state.imgUrl4 == null ? ("暂无照片"):<a href={this.state.imgUrl4} target='_blank'><img src={this.state.imgUrl4}  style={{width:300}} alt=""/></a>}
                       </FormItem>
                     </Col>
                 </Row>                            

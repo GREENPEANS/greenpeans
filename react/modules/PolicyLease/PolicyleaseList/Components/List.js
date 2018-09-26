@@ -197,24 +197,25 @@ export default React.createClass({
     }, {
       title: '合同',
       dataIndex: "loginName",
+      render: (text,record) =>{
+        return <a href="#" className="heZTo">查看合同</a>
+      }
     } , {
       title: '订单状态',
       dataIndex: 'orderStatus',
       render: (text, record)=>{ 
         if(record.orderStatus==0){
-          return "待放款"
+          return <span className="nbtn wrz">待放款</span>
         }else if (record.orderStatus==1) {
-          return "放款中"
+          return <span className="nbtn HZbtn">放款中</span>
         }else if (record.orderStatus==2) {
-          return "待还款"
-        }else if (record.orderState==3) {
-          return "还款失败"
-        }else if (record.orderState==4) {
-          return "还款中"
-        }else if (record.orderState==5) {
-          return "还款成功"
-        }else if (record.orderState==6) {
-          return "还款失败"
+          return <span className="nbtn wrz">待还款</span>
+        }else if (record.orderStatus==3) {
+          return <span className="nbtn blacklist">还款失败</span>
+        }else if (record.orderStatus==4) {
+          return <span className="nbtn HZbtn">还款中</span>
+        }else if (record.orderStatus== 7) {
+          return <span className="nbtn TBbtn">逾期退保</span>
         }else{
             return "-"
         }
@@ -227,9 +228,9 @@ export default React.createClass({
       dataIndex: 'offerStatus',
       render: (text,record) =>{
         if (record.offerStatus == "0"){
-          return "否"
+          return <span className="nbtn blacklist">否</span>
         }else if (record.offerStatus == "1"){
-          return "是"
+          return <span className="nbtn normal">是</span>
         }else{
           return "-"
         }
@@ -237,9 +238,6 @@ export default React.createClass({
     },{
         title: '总额(含手续费和利息)元',
         dataIndex: "totalAmount",
-    },{
-      title: '优惠券使用',
-      dataIndex: '11',
     },{
       title: '已还款金额(元)',
       dataIndex: 'hasPayAmount',
@@ -256,20 +254,22 @@ export default React.createClass({
       title: '操作',
       render: (text, record,orderNo) => {
         return <div>
-          {record.orderStatus == "0"  ? 
-            (<a href="javascript:;">
-              <Tooltip placement="bottomLeft" title="分期审核" >
-                <Button  className="zibtntwo" onClick={me.showAssignModal.bind(me, '分期审核',record, false)}><i className="icon iconfont icon-audit"></i></Button>        
-              </Tooltip><span className="ant-divider"></span></a>  )  
-            : 
-            (<a href="javascript:;"></a>)
-          }
-
           
           <Tooltip placement="bottomLeft" title="查看详情" >
             <Button className="particulars" onClick={me.showModal.bind(me, '查看详情', record, true,orderNo)}><i className="icon iconfont icon-icon-chakanxq"></i></Button>        
           </Tooltip>  
 
+          {record.orderStatus == "0"  ? 
+            (<a href="javascript:;">
+            <span className="ant-divider"></span>
+              <Tooltip placement="bottomLeft" title="分期审核" >
+                <Button  className="zibtntwo" onClick={me.showAssignModal.bind(me, '分期审核',record, false)}><i className="icon iconfont icon-audit"></i></Button>        
+              </Tooltip></a>  )  
+            : 
+            (<a href="javascript:;"></a>)
+          }
+
+          
         </div>
       }    
     },];

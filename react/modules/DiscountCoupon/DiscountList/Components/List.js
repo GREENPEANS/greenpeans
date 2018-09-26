@@ -176,7 +176,7 @@ export default React.createClass({
       render(text, record) {
         return <div style={{textAlign: "left"}}>
         <Tooltip placement="bottomLeft" title="编辑优惠券" >
-          <Button className="audit"  onClick={me.showModal.bind(me,'编辑',record,false)}><i className="icon iconfont icon-wendangxiugai"></i></Button>
+          <Button className="audit"  onClick={me.showModal.bind(me,'编辑',record,false)}><i className="icon iconfont icon-youhuiquanguanli"></i></Button>
         </Tooltip>  
               
         </div>
@@ -186,7 +186,7 @@ export default React.createClass({
     return (
       <div className="block-panel">
            <div className="actionBtns" style={{ marginBottom: 16 }}>
-              <Tooltip placement="bottomLeft" title="新增活动" > 
+              <Tooltip placement="bottomLeft" title="新增优惠券" > 
                 <Button onClick={this.showModal.bind(this,'新增',null,false)}><i className="icon iconfont icon-add"></i></Button>
               </Tooltip>           
            </div>

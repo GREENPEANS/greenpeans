@@ -25,6 +25,11 @@ var Tab2 = React.createClass({
     return record.id;
   },
   componentWillReceiveProps(nextProps){
+    //console.log(nextProps)
+    this.setState({
+      orderNo:nextProps.record.orderNo
+    })
+    console.log(this.state.orderNo)
     if(nextProps.activeKey == '2'){  
       this.fetch();
     }
@@ -41,7 +46,7 @@ var Tab2 = React.createClass({
   },
   // 请求
   fetch(params = {}) {
-    console.log(this.props.record.orderNo);
+    //console.log(this.props.record);
     this.setState({
       loading: true
     });
@@ -89,49 +94,56 @@ var Tab2 = React.createClass({
     });
     this.fetch(params);
   },
-  manualPayments(title, record) {
-    
-    let me = this;
-    let tips = "您是否同意扣款?"
-    confirm({
-      title: title,
-      content: tips,
-      onOk() {
-        Utils.ajaxData({
-          url: "/modules/manage/yeepay/optionYeepay.htm",
-          data: {
-            userId : record.userId,
-            orderPayWay: 2,
-            issms : false,
-            stageType : 1,
-            orderNo: record.orderNo,
-            amount: record.moneyMonthPay,
-            stageNumber : record.stageNumber
-          },
-          method: 'post',
-          callback: (result) => {
-            if (result.code == 200) {
-              Modal.success({
-                title: result.msg,
-              });
-              this.setState({
-                loading: true
-              });
-            } else {
-              Modal.error({
-                title: result.msg,
-              });
-            }
-            this.setState({
-              loading: true
-            });
-          }
-        });
+  manualPayments(title, record) {   
+    Utils.ajaxData({
+      url: "/modules/manage/rzorder/rzManagerQueryPayAmount.htm",
+      data: {
+        userId : record.userId,
+        orderNo: record.orderNo,
       },
-      onCancel() {
-        console.log('Cancel');
-      },
-    });
+      method: 'post',
+      callback: (result) => {
+        if (result.code == 200) {
+          let me = this;
+          let tips = "您是否同意扣款"+result.data.amount+"元?";
+          confirm({
+            title: title,
+            content: tips,
+            onOk() {
+              Utils.ajaxData({
+                url: "/modules/manage/rzorder/rzManagerOrderPay.htm",
+                data: {
+                  userId : record.userId,
+                  orderNo: record.orderNo,
+                  amount:result.data.amount
+                },
+                method: 'post',
+                callback: (result) => {
+                  if (result.code == 200) {
+                    Modal.success({
+                      title: result.msg,
+                    });
+                    me.setState({
+                      loading: true
+                    });
+                  } else {
+                    Modal.error({
+                      title: result.msg,
+                    });
+                  }
+                }
+              });
+            },
+            onCancel() {
+            },
+          });
+        } else {
+          Modal.error({
+            title: result.msg,
+          });
+      }
+    }
+    });        
   },
   render() {
     var me = this;
@@ -146,22 +158,22 @@ var Tab2 = React.createClass({
       title: '订单号',
       dataIndex: "orderNo",
     }, {
-      title: '付租期数',
+      title: '付租期数(个月)',
       dataIndex: "stageCounts",
     }, {
       title: '第几期',
       dataIndex: "stageNumber",
     }, {
-      title: '租金总金额',
+      title: '租金总金额(元)',
       dataIndex: "stageTotalCharge",
     }, {
-      title: '每期利息',
+      title: '每期利息(元)',
       dataIndex: "stageCurrentCharge",
     }, {
-      title: '期供',
+      title: '期供(元)',
       dataIndex: "monthAmount",
     }, {
-      title: '本金',
+      title: '本金(元)',
       dataIndex: "loanAmount",
     }, {
       title: '优惠券使用',
@@ -171,15 +183,14 @@ var Tab2 = React.createClass({
       dataIndex: "payStatus",
       render: (text, record)=>{
         if(record.payStatus==0){
-          return "未支付"
+          return <span className="nbtn meiZf">未支付</span>
         }else if(record.payStatus==1){
-          return "已支付"
+          return <span className="nbtn normal">已支付</span>
         }else if(record.payStatus==2){
-          return "支付中"
+          return <span className="nbtn wrz">支付中</span>
         }else if(record,payStatus == 3){
-          return "支付失败"
+          return <span className="nbtn blacklist">支付失败</span>
         }else{
-
           return "-"
         }
       }
@@ -188,7 +199,7 @@ var Tab2 = React.createClass({
       dataIndex: "payEndTime",
       render:(text,record) =>{
         if(text == null || text == ""){
-          return "未还款";
+          return "-";
         }else{
           return text; 
         }
@@ -198,9 +209,9 @@ var Tab2 = React.createClass({
       dataIndex: "isOverdue",
       render: (text, record)=>{
         if(record.isOverdue==0){
-          return "否"
+          return <span className="nbtn blacklist">否</span>
         }else if(record.isOverdue==1){
-          return "是"
+          return <span className="nbtn normal">是</span>
         }else{
           return "-"
         }
@@ -216,11 +227,11 @@ var Tab2 = React.createClass({
       dataIndex: "payType",
       render: (text, record)=>{
         if(record.payType ==0){
-          return "正常还款"
-        }else if(record.payType==1){
-          return "提前还款"
-        }else if(record.payType==2){
-          return "本期作废"
+          return <span className="nbtn normal">正常还款</span>
+        }else if(record.payType ==1){
+          return <span className="nbtn RZbtn">提前还款</span>
+        }else if(record.payType ==2){
+          return <span className="nbtn blacklist">本期作废</span>
         }else{
           return "-"
         }
@@ -229,11 +240,9 @@ var Tab2 = React.createClass({
       title: '操作',
       render: (text, record,id) => {
         return <div>
-          {record.stagePaymentStatus==2 ? (<a href="javascript:;"><Tooltip placement="bottomLeft" title="手动扣款" >
+          {record.payStatus== 0 ? (<a href="javascript:;"><Tooltip placement="bottomLeft" title="手动扣款" >
             <Button className="zibtnone"  onClick={me.manualPayments.bind(me, '手动扣款',record, true)}><i className="icon iconfont icon-woyaohuankuan"></i></Button>        
-          </Tooltip></a>) :("-")}  
-          <span className="ant-divider"></span>
-                                  
+          </Tooltip></a>) :("-")}                                   
         </div>
       }    
     }];

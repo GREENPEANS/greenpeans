@@ -191,9 +191,9 @@ export default React.createClass({
       dataIndex: 'state',
       render: (text, record) => {
         if (text == 10) {
-          return "黑名单"
+          return <span className="nbtn blacklist">黑名单</span>
         } else {
-          return "正常"
+          return <span className="normal nbtn">正常</span>
         }
       }
     }, {

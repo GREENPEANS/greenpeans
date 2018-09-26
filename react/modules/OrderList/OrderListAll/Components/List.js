@@ -167,16 +167,13 @@ export default React.createClass({
   payMent(title, record) {
     let me = this;
     confirm({
-      title: "是否确定放款",
+      title: "您是否同意回租放款"+record.merPayAmount+"元？",
       onOk: function () {
         Utils.ajaxData({
-          url: "/modules/manage/yeepay/optionYeepayOffline.htm",
+          url: "/modules/manage/hzorder/merPayMoney.htm",
           data: {
-            amount:record.amount,
             userId: record.userId,
             orderNo: record.orderNo,
-            orderPayWay:1,
-            stageType:4
           },
           method: 'post',
           callback: (result) => {
@@ -219,27 +216,31 @@ export default React.createClass({
     }, {
       title: '合同',
       dataIndex: "loginName",
+      render:(text,record) =>{
+        return <a href="#" className="heZTo">查看合同</a>
+      }
     } , {
       title: '订单状态',
       dataIndex: 'orderStatus',
       render: (text, record)=>{ 
         if(record.orderStatus==0){
-          return "待放款"
+          return <span className="nbtn wrz">待放款</span>
         }else if (record.orderStatus==1) {
-          return "放款中"
+          return <span className="nbtn HZbtn">放款中</span>
         }else if (record.orderStatus==2) {
-          return "待还款"
+          return <span className="nbtn wrz">待还款</span>
         }else if (record.orderState==3) {
-          return "还款失败"
+          return <span className="nbtn blacklist">放款失败</span>
         }else if (record.orderState==4) {
-          return "还款中"
+          return <span className="nbtn HZbtn">还款中</span>
         }else if (record.orderState==5) {
-          return "还款成功"
+          return <span className="nbtn normal">还款成功</span>
         }else if (record.orderState==6) {
-          return "还款失败"
+          return <span className="nbtn blacklist">还款失败</span>
         }else{
             return "-"
         }
+
       }
     }, {
       title: '回租期限(天)',
@@ -265,26 +266,26 @@ export default React.createClass({
       title: '操作',
       render: (text, record,orderNo) => {
         return <div>
-          {record.policy != "1"  ? 
-            (<a href="javascript:;">
-            <Tooltip placement="bottomLeft" title="授额" >
-              <Button  className="zibtnone" onClick={me.showAssignModal.bind(me, '授额',record, false)}><i className="icon iconfont icon-audit"></i></Button>        
-            </Tooltip><span className="ant-divider"></span></a>  )  
-            : 
-            (<a href="javascript:;"></a>)
-          }
-
           
           <Tooltip placement="bottomLeft" title="查看详情" >
             <Button className="particulars" onClick={me.showModal.bind(me, '查看详情', record, true,orderNo)}><i className="icon iconfont icon-icon-chakanxq"></i></Button>        
           </Tooltip>  
 
+           {record.policy != "1"  ? 
+            (<a href="javascript:;">
+            <span className="ant-divider"></span>  
+            <Tooltip placement="bottomLeft" title="授额" >
+              <Button  className="zibtnone" onClick={me.showAssignModal.bind(me, '授额',record, false)}><i className="icon iconfont icon-icon4"></i></Button>        
+            </Tooltip><span className="ant-divider"></span></a>  )  
+            : 
+            (<a href="javascript:;"></a>)
+          }
              
           {record.orderStatus == "0" ? (
             <a href="javascript:;">
               <span className="ant-divider"></span>  
-              <Tooltip placement="bottomLeft" title="放款" >
-                <Button  className="audit" onClick={me.payMent.bind(me, '放款',record, true)}><i className="icon iconfont icon-goumai"></i></Button>        
+              <Tooltip placement="bottomLeft" title="回租打款" >
+                <Button  className="audit" onClick={me.payMent.bind(me, '放款',record, true)}><i className="icon iconfont icon-youhuiquanxianxing"></i></Button>        
               </Tooltip>
             </a>
             

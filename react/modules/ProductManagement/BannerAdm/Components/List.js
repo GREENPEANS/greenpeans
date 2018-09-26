@@ -25,7 +25,7 @@ export default React.createClass({
     };
   },
   componentWillReceiveProps(nextProps, nextState) {
-    this.clearSelectedList();
+    //this.clearSelectedList();
     this.fetch(nextProps.params);
   },
   hideModal() {
@@ -49,7 +49,6 @@ export default React.createClass({
           if (result.code == 200) {
             var dataForm = {};
             var update = update;
-            console.log(result)
             let imgType = result.data.imgType.toString();
             let imgDisplay = result.data.imgDisplay.toString();
             dataForm.id = result.data.id;
@@ -219,9 +218,9 @@ export default React.createClass({
       dataIndex: 'imgDisplay',
       render: (text,record) =>{
         if (record.imgDisplay == "1"){
-         return "是"
+         return <span className="nbtn normal">是</span>
         }else if (record.imgDisplay == "0"){
-         return "否"
+         return <span className="nbtn blacklist">否</span>
         }else{
          return "-"
         }

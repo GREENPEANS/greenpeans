@@ -166,19 +166,19 @@ export default React.createClass({
       dataIndex: 'orderStatus',
       render: (text, record)=>{ 
         if(record.orderStatus==0){
-          return "待放款"
+          return <span className="nbtn wrz">待放款</span>
         }else if (record.orderStatus==1) {
-          return "放款中"
+          return <span className="nbtn HZbtn">放款中</span>
         }else if (record.orderStatus==2) {
-          return "待还款"
-        }else if (record.orderState==3) {
-          return "还款失败"
-        }else if (record.orderState==4) {
-          return "还款中"
-        }else if (record.orderState==5) {
-          return "还款成功"
-        }else if (record.orderState==6) {
-          return "还款失败"
+          return <span className="nbtn wrz">待还款</span>
+        }else if (record.orderStatus==3) {
+          return <span className="nbtn blacklist">放款失败</span>
+        }else if (record.orderStatus==4) {
+          return <span className="nbtn HZbtn">还款中</span>
+        }else if (record.orderStatus==5) {
+          return <span className="nbtn normal">还款成功</span>
+        }else if (record.orderStatus==6) {
+          return <span className="nbtn blacklist">还款失败</span>
         }else{
             return "-"
         }
@@ -211,13 +211,12 @@ export default React.createClass({
       title: '逾期状态',
       dataIndex: "isOverdue",
       render:(text,record) =>{
-        if(text == "0"){
-          return "未逾期";
-          
-        }else if(text == "1"){
-          return "逾期"
+        if(record.isOverdue == 1){
+          return <span className="nbtn blacklist">逾期</span>
+        }else if (record.isOverdue == 0){
+          return <span className="nbtn normal">未逾期</span>
         }else{
-          return '-'
+          return "-";
         }
 
       }
@@ -234,7 +233,7 @@ export default React.createClass({
         return <div>
           {record.chargeBack == "1" ? (
             <Tooltip placement="bottomLeft" title="逾期退保" >
-              <Button className="zise" onClick={me.payMent.bind(me, '逾期退保', record, true,orderNo)}><i className="icon iconfont icon-icon-chakanxq"></i></Button>        
+              <Button className="zise" onClick={me.payMent.bind(me, '逾期退保', record, true,orderNo)}><i className="icon iconfont icon-tui1"></i></Button>        
             </Tooltip>  
           ):(
             <span className="ant-divider"></span>

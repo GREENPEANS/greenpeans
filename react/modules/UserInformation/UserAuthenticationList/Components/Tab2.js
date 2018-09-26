@@ -135,24 +135,7 @@ var Tab2 = React.createClass({
           </Col>
          
         </Row> 
-        {/* <Row>
-          <Col span="8">
-            <FormItem {...formItemLayout} label="保单审核状态：">
-              <Input  value = {this.state.dirverLimiteDate}  disabled />
-            </FormItem>
-          </Col>
-        </Row>  */}
-         {/* <Col span="8">
-            <FormItem {...formItemLayout} label="保单审核人：">
-              <Input value = {this.state.policyOperator} disabled />
-            </FormItem>
-          </Col> */}
         <Row>
-          {/* <Col span="8">
-            <FormItem {...formItemLayout} label="理赔照片：">
-            { this.state.insuranceImg ? <a href={this.state.insuranceImg} target="_blank"><img src={this.state.insuranceImg} onClick={this.magnifyImg} style={{ width: 230 }} /></a> : <Input  value = "暂无" />}
-            </FormItem>
-          </Col> */}
           <Col span="8">
             <FormItem {...formItemLayout} label="保单照片：">
             { this.state.insuranceImg ? <a href={this.state.insuranceImg} target="_blank"><img src={this.state.insuranceImg} style={{ width: 230 }} /></a> : <Input  value = "暂无" />}

@@ -67,16 +67,10 @@ let SeachForm = React.createClass({
               <Option value="0">待放款</Option>
               <Option value="1">放款中</Option>
               <Option value="2">待还款</Option>
-              <Option value="3">还款失败</Option>
+              <Option value="3">放款失败</Option>
               <Option value="4">还款中</Option>
               <Option value="5">还款成功</Option>
               <Option value="6">还款失败</Option>
-          </Select>
-        </FormItem>
-        <FormItem label="逾期状态:">
-          <Select style={{ width: 100 }} {...getFieldProps('isOverdue')} placeholder='请选择...'>
-              <Option value="0">未逾期</Option>
-              <Option value="1">逾期</Option>
           </Select>
         </FormItem>
         <FormItem label="还款日期：">

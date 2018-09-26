@@ -64,7 +64,7 @@ var Tab1 = React.createClass({
                   </FormItem>
                 </Col>
                 <Col span="8">
-                  <FormItem {...formItemLayout} label="回租期限：">
+                  <FormItem {...formItemLayout} label="回租期限(天)：">
                     <Input {...getFieldProps('loanTerm', { initialValue: '' }) } disabled={props.canEdit} />
                   </FormItem>
                 </Col>                

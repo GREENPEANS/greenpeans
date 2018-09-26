@@ -24,7 +24,7 @@ export default React.createClass({
     };
   },
   componentWillReceiveProps(nextProps, nextState) {
-    this.clearSelectedList();
+    //this.clearSelectedList();
     this.fetch(nextProps.params);
   },
 //新增跟编辑弹窗
@@ -159,11 +159,11 @@ export default React.createClass({
       dataIndex: 'idStatus',
       render: (text, record)=>{
         if(record.idStatus==10){
-          return "未认证"
+          return <span className="nbtn blacklist">未认证</span>
         }else if(record.idStatus==20){
-          return "认证中"
+          return <span className="nbtn wrz">认证中</span>
         }else if(record.idStatus==30){
-          return "已认证"
+          return <span className="nbtn normal">已认证</span>
         }else{
           return "-"
         }
@@ -172,12 +172,12 @@ export default React.createClass({
       title: '行驶证认证状态',
       dataIndex: 'driverStatus',
       render: (text, record)=>{
-        if(record.driverStatus==10){
-          return "未完善"
-        }else if(record.driverStatus==20){
-          return "完善中"
-        }else if(record.driverStatus==30){
-          return "已完善"
+        if(record.idStatus==10){
+          return <span className="nbtn blacklist">未完善</span>
+        }else if(record.idStatus==20){
+          return <span className="nbtn wrz">完善中</span>
+        }else if(record.idStatus==30){
+          return <span className="nbtn normal">已完善</span>
         }else{
           return "-"
         }
@@ -186,12 +186,12 @@ export default React.createClass({
       title: '银行卡认证状态',
       dataIndex: "cardStatus",
       render: (text, record)=>{
-        if(record.cardStatus==10){
-          return "未认证"
-        }else if(record.cardStatus==20){
-          return "认证中"
-        }else if(record.cardStatus==30){
-          return "已认证"
+        if(record.idStatus==10){
+          return <span className="nbtn blacklist">未认证</span>
+        }else if(record.idStatus==20){
+          return <span className="nbtn wrz">认证中</span>
+        }else if(record.idStatus==30){
+          return <span className="nbtn normal">已认证</span>
         }else{
           return "-"
         }
@@ -200,12 +200,12 @@ export default React.createClass({
       title: '保单认证状态',
       dataIndex: "policyStatus",
       render: (text, record)=>{
-        if(record.policyStatus==10){
-          return "未认证"
-        }else if(record.policyStatus==20){
-          return "认证中"
-        }else if(record.policyStatus==30){
-          return "已认证"
+        if(record.idStatus==10){
+          return <span className="nbtn blacklist">未认证</span>
+        }else if(record.idStatus==20){
+          return <span className="nbtn wrz">认证中</span>
+        }else if(record.idStatus==30){
+          return <span className="nbtn normal">已认证</span>
         }else{
           return "-"
         }
@@ -214,33 +214,33 @@ export default React.createClass({
       title: '保单邮递认证状态',
       dataIndex: "policyMailStatus",
       render: (text, record)=>{
-        if(record.policyMailStatus==10){
-            return "未认证"
-        }else if(record.policyMailStatus==20){
-            return "认证中"
-        }else if(record.policyMailStatus==30){
-            return "已认证"
+        if(record.idStatus==10){
+          return <span className="nbtn blacklist">未认证</span>
+        }else if(record.idStatus==20){
+          return <span className="nbtn wrz">认证中</span>
+        }else if(record.idStatus==30){
+          return <span className="nbtn normal">已认证</span>
         }else{
-            return "-"
+          return "-"
         }
       }
     }, {
       title: '车险认证状态',
       dataIndex: 'insuranceStatus',
       render: (text, record)=>{
-        if(record.insuranceStatus==10){
-          return "未认证"
-        }else if(record.insuranceStatus==20){
-          return "认证中"
-        }else if(record.insuranceStatus==30){
-          return "已认证"
+        if(record.idStatus==10){
+          return <span className="nbtn blacklist">未认证</span>
+        }else if(record.idStatus==20){
+          return <span className="nbtn wrz">认证中</span>
+        }else if(record.idStatus==30){
+          return <span className="nbtn normal">已认证</span>
         }else{
           return "-"
         }
       }
     }, {
       title: '用户注册时间',
-      dataIndex: ' registTime',
+      dataIndex: 'registTime',
     }, {
       title: '操作',
       dataIndex: "",
