@@ -121,7 +121,7 @@ var Tab2 = React.createClass({
                 callback: (result) => {
                   if (result.code == 200) {
                     Modal.success({
-                      title: result.msg,
+                      title: "扣款成功！",
                     });
                     me.setState({
                       loading: true

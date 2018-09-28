@@ -57,7 +57,7 @@
   margin-bottom: 0;
   margin-left: 230px;
   border: none;
-  min-height: 70px;
+  min-height: 50px;
   border-radius: 0;
 }
 .layout-top-nav .main-header > .navbar {
@@ -143,10 +143,11 @@ td div button{
     float: left;
     background-color: transparent;
     background-image: none;
-    padding: 18px 15px;
+    padding: 0x 15px;
     font-family: fontAwesome;
     color: #fff;
     font-size: 20px;
+    line-height: 50px;
 }
 td div button{
     padding: 0px 10px!important;
@@ -273,7 +274,7 @@ td div button{
 .right-block {
     margin-right: 14px;
     color: #fff;
-    line-height:70px;
+    line-height:50px;
 }
 .nbtn{
     width: auto;

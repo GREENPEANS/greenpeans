@@ -74,11 +74,11 @@ export default React.createClass({
                 <div className="block-panel">
                     <h2 className="navLine-title">今日数据</h2>
                     <div className='blk-top'>
-                        <div className='blk-top-item'>
+                        {/* <div className='blk-top-item'>
                             <div className='blk-title'>当天注册数</div>
                             <div className='blk-number'>{data.register}</div>
-                        </div>
-                            <div className='blk-top-item blk-top-item-last'>
+                        </div> */}
+                            {/* <div className='blk-top-item blk-top-item-last'>
                                 <div className='blk-title' >借款申请数</div>
                                 <div className='blk-number'>{data.borrow}</div>
                             </div>
@@ -101,13 +101,13 @@ export default React.createClass({
                             <div className='blk-top-item'>
                                 <div className='blk-title'>新用户</div>
                                 <div className='blk-number'>{data.d}</div>
-                            </div>
-                        <div className='blk-top-item blk-top-item-last'>
+                            </div> */}
+                        {/* <div className='blk-top-item blk-top-item-last'>
                             <div className='blk-title'>通过率</div>
                             <div className='blk-number'>{data.passApr}<span style={{ fontSize: '12px' }}>% </span></div>
-                        </div>
+                        </div> */}
                     </div>
-                    <div className='blk-top'>
+                    {/* <div className='blk-top'>
                         <div className='blk-top-item blk-top-item-last'>
                             <div className='blk-title'>放款量</div>
                             <div className='blk-number'>{data.borrowLoan}</div>
@@ -125,28 +125,17 @@ export default React.createClass({
                             <div className='blk-number'>{data.borrowRepay}</div>
                         </div>
                         <div style={{flex:4}}></div>
-                    </div>
+                    </div> */}
                     <div className='blk-top'>
-	                    <div className='blk-top-item'>
+	                    {/* <div className='blk-top-item'>
 		                    <div className='blk-title'>当天应还款笔数</div>
 		                    <div className='blk-number'>{data.countCurrentDayShouldBorrowRepay}</div>
 	                    </div>
 	                    <div className='blk-top-item'>
 		                    <div className='blk-title'>当天到期已还款笔数</div>
 		                    <div className='blk-number'>{data.countCurrentDayAlreadyBorrowRepay}</div>
-	                    </div>
-	                    <div className='blk-top-item'>
-		                    <div className='blk-title'>当天未还款笔数</div>
-		                    <div className='blk-number'>{data.countCurrentDayNoBorrowRepay}</div>
-	                    </div>
-	                    <div className='blk-top-item'>
-		                    <div className='blk-title'>当天逾期笔数</div>
-		                    <div className='blk-number'>{data.countCurrentDayOverdue}</div>
-	                    </div>
-	                    <div className='blk-top-item blk-top-item-last'>
-		                    <div className='blk-title'>当天催回笔数</div>
-		                    <div className='blk-number'>{data.countCurrentDayBack}</div>
-	                    </div>
+	                    </div> */}
+	                   
 	                    <div className='blk-top-item'>
 		                    <div className='blk-title'></div>
 		                    <div className='blk-number'></div>
@@ -165,7 +154,7 @@ export default React.createClass({
                     <div className="data-panel">
                         <div className="block-panel">
                             <h2 className="navLine-title">累计数据</h2>
-                            <Row>
+                            {/* <Row>
                                 <Col span='12'>
                                     <div className='blk-bottom'>
                                         <span className='workBench-icon icon1'> </span>
@@ -180,13 +169,13 @@ export default React.createClass({
                                         <span className='blk-number'>{data.borrowRepayHistory}</span>笔
                                     </div>
                                 </Col>
-                            </Row>
+                            </Row> */}
                         </div>
                     </div>
                     <div className="data-panel">
                         <div className="block-panel">
                             <h2 className="navLine-title">实时数据</h2>
-                            <Row>
+                            {/* <Row>
                                 <Col span='12'>
                                     <div className='blk-bottom'>
                                         <span className='workBench-icon icon3'> </span>
@@ -201,7 +190,7 @@ export default React.createClass({
                                         <span className='blk-number'>{data.overdueRepay}</span>元
                                     </div>
                                 </Col>
-                            </Row>
+                            </Row> */}
                         </div>
                     </div>
                 </div>

@@ -79,8 +79,12 @@ var AddRole = React.createClass({
                         Modal.success({
                             title: result.msg,
                             onOk: () => {
+                                this.setState({
+                                    loading:true
+                                })
                                 me.handleCancel();
                             }
+                            
                         });
                     }else {
                         Modal.error({

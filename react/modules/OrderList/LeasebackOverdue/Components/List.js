@@ -114,12 +114,12 @@ export default React.createClass({
       selectedrecord: record
     });
   },
-  //逾期退保
+  //逾期退租
   payMent(title, record) {
     let me = this;
     confirm({
-      title: "您是否确认进行退保？",
-      content:'退保操作只能执行一次，请您谨慎操作！！！',
+      title: "您是否确认进行退租？",
+      content:'退租操作只能执行一次，请您谨慎操作！！！',
       onOk: function () {
         Utils.ajaxData({
           url: "/modules/manage/hzoverdue/chargeback.htm",
@@ -228,8 +228,8 @@ export default React.createClass({
       render: (text, record,orderNo) => {
         return <div>
           {record.chargeBack == "1" ? (
-            <Tooltip placement="bottomLeft" title="逾期退保" >
-              <Button className="zise" onClick={me.payMent.bind(me, '逾期退保', record, true,orderNo)}><i className="icon iconfont icon-tui1"></i></Button>        
+            <Tooltip placement="bottomLeft" title="逾期退租" >
+              <Button className="zise" onClick={me.payMent.bind(me, '逾期退租', record, true,orderNo)}><i className="icon iconfont icon-tui1"></i></Button>        
             </Tooltip>  
           ):(
             <span className="ant-divider"></span>
@@ -241,6 +241,7 @@ export default React.createClass({
     var state = this.state;
     return (
       <div className="block-panel">
+        <span>*订单逾期七天后才可以进行退租操作</span>
         <Table columns={columns} rowKey={this.rowKey}
           onRowClick={this.onRowClick}
           dataSource={this.state.data}

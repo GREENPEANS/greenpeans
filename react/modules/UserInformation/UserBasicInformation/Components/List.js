@@ -174,6 +174,15 @@ export default React.createClass({
     }, {
       title: '注册客户端',
       dataIndex: 'registerClient',
+      render:(text,record) =>{
+        if(text == "1"){
+          return "安卓"
+        }else if(text == "0"){
+          return "IOS"
+        }else{
+          return "-"
+        }
+      }
     }, {
 	    title: '注册地地址',
 	    dataIndex: 'registerAddr',

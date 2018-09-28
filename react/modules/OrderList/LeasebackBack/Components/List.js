@@ -51,12 +51,12 @@ export default React.createClass({
       record: record,
       canEdit:canEdit
     });
-    if (me.state.record.status == 0){
-        me.state.record.status="待处理"
-    }else if (me.state.record.state == 1){
-        me.state.record.status="已处理"
-    }else if (me.state.record.state == 2){
-        me.state.record.status="已拒绝"
+    if (record.status == 0){
+        record.status="待处理"
+    }else if (record.status == 1){
+        record.status="已处理"
+    }else if (record.status == 2){
+        record.status="已拒绝"
     };
     this.refs.AddUserWin.setFieldsValue(record);
   },

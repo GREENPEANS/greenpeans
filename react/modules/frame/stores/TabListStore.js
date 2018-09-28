@@ -29,7 +29,7 @@ export default Reflux.createStore({
 					'ChannelManage',
 					'ScenePortManage',
 					'ThirdPartyInquiry',				
-					'RulesMatchResults',
+					//'RulesMatchResults',
 					'FormFieldsToAdd',
 					'PolicyleaseOverdue', //保單融租
 					'PolicyOffer',

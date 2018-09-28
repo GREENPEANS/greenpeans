@@ -62,7 +62,7 @@ let SeachForm = React.createClass({
         <FormItem label="审核状态：">
             <Select style={{ width: 150 }} {...getFieldProps('status')} placeholder='请选择...'>
                 <Option value="">全部</Option>
-                <Option value="0">审核中</Option>
+                <Option value="0">待审核</Option>
                 <Option value="1">审核通过</Option>
                 <Option value="2">审核未通过</Option>
             </Select>

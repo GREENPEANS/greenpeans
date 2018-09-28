@@ -5,7 +5,8 @@ import {
     Input,
     Select,
     DatePicker,
-    Radio
+    Radio,
+    Tooltip
 } from 'antd';
 const createForm = Form.create;
 const FormItem = Form.Item;
@@ -75,14 +76,22 @@ let SeachForm = React.createClass({
                         <Option key={'c'} value="20">执行失败</Option>
                     </Select>
                 </FormItem>
-                <FormItem><Button type="primary" onClick={this.handleQuery}>查询</Button></FormItem>
-                <FormItem><Button type="reset" onClick={this.handleReset}>重置</Button></FormItem>               
+                <FormItem>
+                    <Tooltip placement="bottomLeft" title="查询" >
+                        <Button type="primary" onClick={this.handleQuery}><i className="icon iconfont icon-monitor"></i></Button>
+                    </Tooltip>         
+                </FormItem>
+                <FormItem>
+                    <Tooltip placement="bottomLeft" title="重置菜单" >
+                        <Button type="reset" onClick={this.handleReset}><i className="icon iconfont icon-sync"></i></Button>
+                    </Tooltip>
+                </FormItem>
+                {/* <FormItem><Button type="primary" onClick={this.handleQuery}>查询</Button></FormItem>
+                <FormItem><Button type="reset" onClick={this.handleReset}>重置</Button></FormItem>                */}
             </Form>
         );
     }
 });
 
 SeachForm = createForm()(SeachForm);
-export default SeachForm;/**
- * Created by WIN10 on 2016/10/12.
- */
+export default SeachForm;

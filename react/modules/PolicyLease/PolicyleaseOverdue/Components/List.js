@@ -156,17 +156,17 @@ export default React.createClass({
       dataIndex: 'orderStatus',
       render: (text, record)=>{ 
         if(record.orderStatus==0){
-          return <span className="nbtn wrz">待放款</span>
+          return <span className="nbtn wrz">待支付</span>
         }else if (record.orderStatus==1) {
-          return <span className="nbtn HZbtn">放款中</span>
+          return <span className="nbtn HZbtn">已支付</span>
         }else if (record.orderStatus==2) {
-          return <span className="nbtn wrz">待还款</span>
+          return <span className="nbtn wrz">还款中</span>
         }else if (record.orderStatus==3) {
-          return <span className="nbtn blacklist">还款失败</span>
+          return <span className="nbtn blacklist">支付失败</span>
         }else if (record.orderStatus==4) {
-          return <span className="nbtn HZbtn">还款中</span>
+          return <span className="nbtn HZbtn">保单受理</span>
         }else if (record.orderStatus== 7) {
-          return <span className="nbtn TBbtn">逾期退保</span>
+          return <span className="nbtn TBbtn">退保已处理</span>
         }else{
             return "-"
         }
@@ -232,6 +232,7 @@ export default React.createClass({
     var state = this.state;
     return (
       <div className="block-panel">
+        <span>*订单逾期七天后才可以进行退保操作</span>
         <Table columns={columns} rowKey={this.rowKey}
           onRowClick={this.onRowClick}
           dataSource={this.state.data}

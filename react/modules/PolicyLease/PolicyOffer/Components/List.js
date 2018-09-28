@@ -156,6 +156,9 @@ export default React.createClass({
         }
       }
     },{
+      title: '申请时间',
+      dataIndex: "createTime",
+    },{
         title: '审核时间',
         dataIndex: "checkTime",
     }, {

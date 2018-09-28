@@ -26,11 +26,12 @@ let SeachForm = React.createClass({
     if(params.Time){
     	if(params.Time[0]){
     		if(params.Time[1]){
-          params.startTime = (DateFormat.formatDate(params.Time[0]));
-          params.endTime = (DateFormat.formatDate(params.Time[1]));   	
+          params.oveStartTime = (DateFormat.formatDate(params.Time[0]));
+          params.oveEndTime = (DateFormat.formatDate(params.Time[1]));   	
     		}
     		}
       }
+    delete params.Time;  
     this.props.passParams({
       search : JSON.stringify(params),
       pageSize: 10,
@@ -44,10 +45,6 @@ let SeachForm = React.createClass({
       pageSize: 10,
       current: 1,
     });
-  },
-  disabledDate(startValue) {
-      var today = new Date();
-      return startValue.getTime() > today.getTime();
   },
   render() {
     const {
@@ -74,7 +71,7 @@ let SeachForm = React.createClass({
           </Select>
         </FormItem>
         <FormItem label="还款日期：">
-          <RangePicker showTime format="yyyy/MM/dd HH:mm:ss"  disabledDate={this.disabledDate} {...getFieldProps('Time', { initialValue:'' }) } />
+          <RangePicker showTime format="yyyy/MM/dd HH:mm:ss"  {...getFieldProps('Time', { initialValue:'' }) } />
         </FormItem>
 
         <FormItem>

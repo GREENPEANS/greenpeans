@@ -1,7 +1,9 @@
 import React from 'react'
 import {
     Table,
-    Modal
+    Modal,
+    Tooltip,
+    Button
 } from 'antd';
 import AddWin from './AddWin'
 var confirm = Modal.confirm;
@@ -277,9 +279,9 @@ export default React.createClass({
         return (
             <div className="block-panel">
                 <div className="actionBtns" style={{ marginBottom: 16 }}>
-                    <button className="ant-btn" onClick={this.showModal.bind(this, '新增', record, true)}>
-                        新增
-                    </button>    
+                    <Tooltip placement="bottomLeft" title="新增优惠券" > 
+                        <Button onClick={this.showModal.bind(this,'新增',null,false)}><i className="icon iconfont icon-add"></i></Button>
+                    </Tooltip>      
                 </div>
                 <Table columns={columns} rowKey={this.rowKey} size="middle"
                     onRowClick={this.onRowClick}

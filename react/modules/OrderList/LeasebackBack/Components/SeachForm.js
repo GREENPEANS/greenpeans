@@ -65,7 +65,7 @@ let SeachForm = React.createClass({
               <Option value="">全部</Option>
               <Option value="1">已处理</Option>
               <Option value="2">已拒绝</Option>
-              <Option value="3">待处理</Option>
+              <Option value="0">待处理</Option>
           </Select>
         </FormItem>
         <FormItem>

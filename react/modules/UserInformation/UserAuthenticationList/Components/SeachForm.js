@@ -57,14 +57,14 @@ let SeachForm = React.createClass({
         <FormItem label="手机号码：">
           <Input  {...getFieldProps('phone') } />
         </FormItem>
-        <FormItem label="状态:">
+        {/* <FormItem label="状态:">
           <Select style={{ width: 100 }} {...getFieldProps('status')} placeholder='请选择...'>
               <Option value="">全部</Option>
               <Option value="10">未认证</Option>
               <Option value="20">认证中</Option>
               <Option value="30">已认证</Option>
           </Select>
-        </FormItem>      
+        </FormItem>       */}
        
         <FormItem>
           <Tooltip placement="bottomLeft" title="查询" >

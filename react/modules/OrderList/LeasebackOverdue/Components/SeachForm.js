@@ -71,10 +71,11 @@ let SeachForm = React.createClass({
               <Option value="4">还款中</Option>
               <Option value="5">还款成功</Option>
               <Option value="6">还款失败</Option>
+              <Option value="7">退保已处理</Option>
           </Select>
         </FormItem>
         <FormItem label="还款日期：">
-          <RangePicker showTime format="yyyy/MM/dd HH:mm:ss"  disabledDate={this.disabledDate} {...getFieldProps('Time', { initialValue:'' }) } />
+          <RangePicker showTime format="yyyy/MM/dd HH:mm:ss"  {...getFieldProps('Time', { initialValue:'' }) } />
         </FormItem>
 
         <FormItem>

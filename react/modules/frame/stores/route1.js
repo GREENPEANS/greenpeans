@@ -1,7 +1,7 @@
 
 var ScenePortManage = require('../../ScenePortManage/index');//场景与接口关系维护
 var ThirdPartyInquiry = require('../../ThirdPartyInquiry/index');//第三方征信 
-var RulesMatchResults = require('../../RulesMatchResults/index');//规则匹配结果
+//var RulesMatchResults = require('../../RulesMatchResults/index');//规则匹配结果
 var FormFieldsToAdd = require('../../FormFieldsToAdd/index');//表字段维护 
 
 var OrderListAll = require('../../OrderList/OrderListAll/index') // 保单售后回租 订单列表
@@ -32,7 +32,7 @@ module.exports = {
   ChannelManage,
   ScenePortManage,
   ThirdPartyInquiry,
-  RulesMatchResults,
+ // RulesMatchResults,
   FormFieldsToAdd,
   OrderListAll,
   ProductModification,

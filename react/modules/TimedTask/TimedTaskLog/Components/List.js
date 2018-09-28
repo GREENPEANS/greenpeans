@@ -142,7 +142,7 @@ export default React.createClass({
             title: '执行时间',
             dataIndex: "startTime"
         },{
-            title: '执行结果',
+            title: '备注',
             dataIndex: "remark"
         },{
             title: '用时(毫秒)',

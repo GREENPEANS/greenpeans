@@ -150,14 +150,14 @@ var AddWin = React.createClass({
                                 <Row>
                                 <Col span="24">
                                     <FormItem  {...formItemLayout} label="任务标识:">
-                                        <Input type="text" placeholder="请输入字母和数字组合" disabled={!props.canEdit} {...getFieldProps('code',{rules:[{ required: true, message: '必填'}]})} />                                 
+                                        <Input type="text" placeholder="请输入字母和数字组合"  disabled={!props.canEdit} {...getFieldProps('code',{rules:[{ required: true, message: '必填'}]})} />                                 
                                     </FormItem>
                                 </Col>
                                 </Row>
                                 <Row>
                                <Col span="24">
                                     <FormItem  {...formItemLayout} label="任务方法名:">
-                                        <Input type="text" placeholder="请输入任务方法名" disabled={!props.canEdit} />                                 
+                                        <Input type="text" placeholder="请输入任务方法名" {...getFieldProps('className',{rules:[{ required: true, message: '必填'}]})}  disabled={!props.canEdit} />                                 
                                     </FormItem>
                               </Col>
                             </Row>

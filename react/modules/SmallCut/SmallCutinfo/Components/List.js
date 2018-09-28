@@ -157,7 +157,7 @@ export default React.createClass({
         }
     }, {
       title: '发放时间',
-      dataIndex: "CouponCreateTime",
+      dataIndex: "couponCreateTime",
     } , {
       title: '审核状态',
       dataIndex: 'status',

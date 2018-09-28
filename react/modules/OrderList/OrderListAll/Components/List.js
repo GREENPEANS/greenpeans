@@ -97,6 +97,10 @@ export default React.createClass({
     //console.log(canEdit)
   },
 
+  loginName(record){
+    console.log(record)
+  },
+
   //分页
   handleTableChange(pagination, filters, sorter) {
     const pager = this.state.pagination;
@@ -167,7 +171,7 @@ export default React.createClass({
   payMent(title, record) {
     let me = this;
     confirm({
-      title: "您是否同意回租放款"+record.merPayAmount+"元？",
+      title: "您是否同意回租打款"+record.merPayAmount+"元？",
       onOk: function () {
         Utils.ajaxData({
           url: "/modules/manage/hzorder/merPayMoney.htm",
@@ -179,7 +183,7 @@ export default React.createClass({
           callback: (result) => {
             if (result.code == 200) {
               Modal.success({
-                title: "线下支付已成功",
+                title: "回租打款已成功",
               });
             }else{
               Modal.error({
@@ -217,7 +221,7 @@ export default React.createClass({
       title: '合同',
       dataIndex: "loginName",
       render:(text,record) =>{
-        return <a href="#" className="heZTo">查看合同</a>
+        return <a href="#" className="heZTo" onClick={me.loginName.bind(me, record,)}>查看合同</a>
       }
     } , {
       title: '订单状态',

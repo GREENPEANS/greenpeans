@@ -64,14 +64,13 @@ let SeachForm = React.createClass({
         </FormItem>
         <FormItem label="订单状态:">
           <Select style={{ width: 150 }} {...getFieldProps('orderStatus')} placeholder='请选择...'>
-              <Option value="">全部</Option>
-              <Option value="0">待放款</Option>
-              <Option value="1">放款中</Option>
-              <Option value="2">待还款</Option>
-              <Option value="3">还款失败</Option>
-              <Option value="4">还款中</Option>
-              <Option value="5">还款成功</Option>
-              <Option value="6">还款失败</Option>
+          <Option value="">全部</Option>
+                <Option value="0">待支付</Option>
+                <Option value="1">已支付</Option>
+                <Option value="2">还款中</Option>
+                <Option value="3">支付失败</Option>
+                <Option value="4">保单受理中</Option>
+                <Option value="7">退保已处理</Option>
           </Select>
         </FormItem>
         <FormItem label="逾期状态:">
