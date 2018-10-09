@@ -20,6 +20,7 @@ const userbaseTit = {
 var Tab7 = React.createClass({
   getInitialState() {
     return {
+      emsNumberImg:""
     };
   },
   componentWillReceiveProps(nextProps){

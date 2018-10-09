@@ -24,14 +24,16 @@ var Tab2 = React.createClass({
   },
   componentWillReceiveProps(nextProps){
     if(nextProps.activeKey == '2'){   
+      console.log("thiskey2");
     //  this.fetch();
     }
   },
   componentDidMount(){
-    
+    console.log("fetch");
     this.fetch();
   },
   fetch(params = {}) {
+    console.log("data");
     var me = this;
     this.setState({
       loading: true
@@ -45,8 +47,8 @@ var Tab2 = React.createClass({
       data: params,
       callback: (result) => {
         if (result.code == 200) {
+          console.log(result);
           let data = result.data.policyInfo;
-          console.log(data)
           this.setState({
             drivingBrand: data.drivingBrand,
             policyMan: data.policyMan,

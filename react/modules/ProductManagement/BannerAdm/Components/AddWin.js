@@ -70,18 +70,15 @@ class AddWin extends React.Component {
   }
 
   componentDidMount() {
-     // console.log(this.props.form.setFieldsValue())
       this.props.form.setFieldsValue(this.props.dataForm);
       
   }
 
   handleChange =(info) =>{   
-    if (info.file.status !== 'uploading') {
-      console.log(info.file);                
+    if (info.file.status !== 'uploading') {                
       this.setState({
         imgPath:info.file.response.data
       });
-      console.log(this.state.imgPath);
     }
     if (info.file.status === 'done') {
       message.success(`${info.file.name} 上传成功！`);

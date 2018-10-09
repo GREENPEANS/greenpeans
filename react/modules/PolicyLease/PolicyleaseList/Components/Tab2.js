@@ -25,11 +25,9 @@ var Tab2 = React.createClass({
     return record.id;
   },
   componentWillReceiveProps(nextProps){
-    //console.log(nextProps)
     this.setState({
       orderNo:nextProps.record.orderNo
     })
-    console.log(this.state.orderNo)
     if(nextProps.activeKey == '2'){  
       this.fetch();
     }
@@ -240,7 +238,7 @@ var Tab2 = React.createClass({
       title: '操作',
       render: (text, record,id) => {
         return <div>
-          {record.payStatus== 0 ? (<a href="javascript:;"><Tooltip placement="bottomLeft" title="手动扣款" >
+          {record.payStatus== 0  ? (<a href="javascript:;"><Tooltip placement="bottomLeft" title="手动扣款" >
             <Button className="zibtnone"  onClick={me.manualPayments.bind(me, '手动扣款',record, true)}><i className="icon iconfont icon-woyaohuankuan"></i></Button>        
           </Tooltip></a>) :("-")}                                   
         </div>

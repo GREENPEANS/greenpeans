@@ -25,7 +25,6 @@ var AddUserWin = React.createClass({
     
   },
   componentWillReceiveProps(nextProps){  
-   // console.log(nextProps)
     this.setState({
       recordSoure: nextProps.record,
       imgPath :nextProps.record&& nextProps.record.imgPath

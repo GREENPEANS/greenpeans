@@ -239,6 +239,20 @@ export default React.createClass({
         }
       }
     }, {
+      title: '邮箱认证状态',
+      dataIndex: 'emailStatus',
+      render: (text, record)=>{
+        if(record.emailStatus==10){
+          return <span className="nbtn blacklist">未认证</span>
+        }else if(record.emailStatus==20){
+          return <span className="nbtn wrz">认证中</span>
+        }else if(record.emailStatus==30){
+          return <span className="nbtn normal">已认证</span>
+        }else{
+          return "-"
+        }
+      }
+    }, {
       title: '用户注册时间',
       dataIndex: 'registTime',
     }, {

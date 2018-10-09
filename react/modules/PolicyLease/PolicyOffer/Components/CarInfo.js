@@ -20,7 +20,6 @@ var CarInfo = React.createClass({
     };
   },
   componentWillReceiveProps(nextProps){ 
-   // console.log(nextProps.selectRecord) 
     this.setState({
       id: nextProps.selectRecord.id,
       leftFontImg :nextProps.selectRecord.leftFontImg, 

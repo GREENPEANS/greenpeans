@@ -5,6 +5,7 @@ var ThirdPartyInquiry = require('../../ThirdPartyInquiry/index');//第三方征�
 var FormFieldsToAdd = require('../../FormFieldsToAdd/index');//表字段维护 
 
 var OrderListAll = require('../../OrderList/OrderListAll/index') // 保单售后回租 订单列表
+var OrderGiven = require('../../OrderList/OrderGiven/index') // 保单售后回租 保单授额
 var LeasebackOverdue = require('../../OrderList/LeasebackOverdue/index') // 保单售后回租 订单逾期处理
 var WLeasebackOverdue = require('../../OrderList/WLeasebackOverdue/index') // 保单售后回租 订单逾期处理（未分期）
 var LeasebackBack = require('../../OrderList/LeasebackBack/index') // 保单售后回租 回递申请处理
@@ -35,6 +36,7 @@ module.exports = {
  // RulesMatchResults,
   FormFieldsToAdd,
   OrderListAll,
+  OrderGiven,
   ProductModification,
   BannerAdm,
   DiscountCoupon,

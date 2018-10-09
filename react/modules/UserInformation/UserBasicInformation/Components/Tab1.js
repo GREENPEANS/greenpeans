@@ -5,9 +5,11 @@ import {
   Input,
   Row,
   Col,
+  Select
 } from 'antd';
 const createForm = Form.create;
 const FormItem = Form.Item;
+const Option = Select.Option;
 const objectAssign = require('object-assign');
 const userbaseTit = {
   color: '#2db7f5',

@@ -17,7 +17,6 @@ export default Reflux.createStore({
             callback: (result) => {
                 this.menuData = result.data;
                 this.update();
-               // console.log(JSON.stringify(result.data));
             }
         });
     },

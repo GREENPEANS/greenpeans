@@ -84,7 +84,6 @@ var AddUserWin = React.createClass({
         delete params.id;
         params['type'] = 'create';
         var data = params
-        console.log("111");
       }
      
       if (title == "编辑") {
@@ -93,7 +92,6 @@ var AddUserWin = React.createClass({
         delete params.type;
         params['type'] = 'update';
         var data = params
-        console.log('222')
       }
       Utils.ajaxData({
         url: url,

@@ -9,9 +9,9 @@ module.exports = {
   ],
   output: {
     path: __dirname + '/webapp/build',
-    publicPath: '/build/',
+    publicPath: '../build',
     filename: './bundle.js',
-    chunkFilename: "[id].chunk.js"
+    chunkFilename: "/build[id].chunk.js"
   },
   module: {
     loaders: [{

@@ -6,7 +6,6 @@ import {
   Button
 } from 'antd';
 import AddUserWin from './AddUserWin'
-import Reset from './Reset'
 var confirm = Modal.confirm;
 const objectAssign = require('object-assign');
 export default React.createClass({
@@ -212,7 +211,7 @@ export default React.createClass({
       }
     }, {
       title: '图片标题',
-      dataIndex: "imgTitle",
+      dataIndex: "title",
     }, {
       title: '图片显示状态',
       dataIndex: 'imgDisplay',
@@ -228,6 +227,9 @@ export default React.createClass({
     }, {
       title: '图片链接地址',
       dataIndex: "imgUrl"
+    }, {
+      title: '添加时间',
+      dataIndex: "createTime"
     }, {
       title: '操作',
       dataIndex: "",

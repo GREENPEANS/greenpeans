@@ -119,10 +119,10 @@ export default React.createClass({
     const hasSelected = selectedRowKeys.length > 0;
     var columns = [{
       title: '用户姓名',
-      dataIndex: 'phone',
+      dataIndex: 'userName',
     },{
       title: '用户手机号',
-      dataIndex: 'userName',
+      dataIndex: 'phone',
     },{
       title: '车牌号',
       dataIndex: 'carNumber',

@@ -49,20 +49,18 @@ export default React.createClass({
       title: title,
       record: record,
     }, () => {     
-      if(record.orderStatus==0){
-         record.orderStatus="待放款"
-      }else if (record.orderStatus==1) {
-         record.orderStatus="放款中"
-      }else if (record.orderStatus==2) {
-         record.orderStatus="待还款"
-      }else if (record.orderState==3) {
-         record.orderStatus="还款失败"
-      }else if (record.orderState==4) {
+      if(record.orderStatus == "0"){
+         record.orderStatus="待支付"
+      }else if (record.orderStatus == "1") {
+         record.orderStatus="已支付"
+      }else if (record.orderStatus == "2") {
          record.orderStatus="还款中"
-      }else if (record.orderState==5) {
-         record.orderStatus="还款成功"
-      }else if (record.orderState==6) {
-         record.orderStatus="还款失败"
+      }else if (record.orderStatus == "3") {
+         record.orderStatus="支付失败"
+      }else if (record.orderStatus == "4") {
+         record.orderStatus="保单受理"
+      }else if (record.orderStatus == "7") {
+         record.orderStatus="退保已处理"
       }else{
            record.orderStatus="-"
       }
@@ -258,8 +256,8 @@ export default React.createClass({
           <Tooltip placement="bottomLeft" title="查看详情" >
             <Button className="particulars" onClick={me.showModal.bind(me, '查看详情', record, true,orderNo)}><i className="icon iconfont icon-icon-chakanxq"></i></Button>        
           </Tooltip>  
-
-          {record.orderStatus == "4"  ? 
+          
+          {record.orderStatus == "4" || record.orderStatus == "保单受理" ? 
             (<a href="javascript:;">
             <span className="ant-divider"></span>
               <Tooltip placement="bottomLeft" title="分期审核" >
@@ -267,9 +265,7 @@ export default React.createClass({
               </Tooltip></a>  )  
             : 
             (<a href="javascript:;"></a>)
-          }
-
-          
+          }         
         </div>
       }    
     },];

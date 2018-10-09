@@ -13,6 +13,7 @@ import Tab3 from './Tab3';
 import Tab5 from './Tab5';
 import Tab6 from './Tab6';
 import Tab7 from './Tab7';
+import Tab8 from './Tab8';
 const createForm = Form.create;
 const FormItem = Form.Item;
 const TabPane = Tabs.TabPane;
@@ -65,7 +66,10 @@ var ReviewWin = React.createClass({
                     </TabPane>  
                     <TabPane tab="保单邮递认证状态" key="7">
                         <Tab7 record={props.record} ref="Tab7" canEdit={props.canEdit} activeKey={this.state.activekey}/>
-                    </TabPane>             
+                    </TabPane>
+                    <TabPane tab="邮箱认证状态" key="8">
+                        <Tab8 record={props.record} ref="Tab8" canEdit={props.canEdit} activeKey={this.state.activekey}/>
+                    </TabPane>            
                 </Tabs>
             </Modal>
     );

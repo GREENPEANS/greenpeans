@@ -219,7 +219,7 @@ export default React.createClass({
         dataIndex: "phone",
     }, {
       title: '合同',
-      dataIndex: "loginName",
+      dataIndex: "loginNameloginName",
       render:(text,record) =>{
         return <a href="#" className="heZTo" onClick={me.loginName.bind(me, record,)}>查看合同</a>
       }
@@ -233,13 +233,13 @@ export default React.createClass({
           return <span className="nbtn HZbtn">放款中</span>
         }else if (record.orderStatus==2) {
           return <span className="nbtn wrz">待还款</span>
-        }else if (record.orderState==3) {
+        }else if (record.orderStatus==3) {
           return <span className="nbtn blacklist">放款失败</span>
-        }else if (record.orderState==4) {
+        }else if (record.orderStatus==4) {
           return <span className="nbtn HZbtn">还款中</span>
-        }else if (record.orderState==5) {
+        }else if (record.orderStatus==5) {
           return <span className="nbtn normal">还款成功</span>
-        }else if (record.orderState==6) {
+        }else if (record.orderStatus==6) {
           return <span className="nbtn blacklist">还款失败</span>
         }else{
             return "-"
@@ -275,15 +275,15 @@ export default React.createClass({
             <Button className="particulars" onClick={me.showModal.bind(me, '查看详情', record, true,orderNo)}><i className="icon iconfont icon-icon-chakanxq"></i></Button>        
           </Tooltip>  
 
-           {record.policy != "1"  ? 
+           {/* {record.policy != "1"  ? 
             (<a href="javascript:;">
             <span className="ant-divider"></span>  
             <Tooltip placement="bottomLeft" title="授额" >
               <Button  className="zibtnone" onClick={me.showAssignModal.bind(me, '授额',record, false)}><i className="icon iconfont icon-icon4"></i></Button>        
-            </Tooltip><span className="ant-divider"></span></a>  )  
+            </Tooltip></a>  )  
             : 
             (<a href="javascript:;"></a>)
-          }
+          } */}
              
           {record.orderStatus == "0" ? (
             <a href="javascript:;">

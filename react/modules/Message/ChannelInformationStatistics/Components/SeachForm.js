@@ -55,8 +55,8 @@ let SeachForm = React.createClass({
                     <Input type="text" {...getFieldProps('phone') } />
                 </FormItem>
                 <FormItem>
-                <Tooltip placement="bottomLeft" title="查询" >
-                  <Button type="primary" onClick={this.handleQuery}><i className="icon iconfont icon-monitor"></i></Button>
+                  <Tooltip placement="bottomLeft" title="查询" >
+                    <Button type="primary" onClick={this.handleQuery}><i className="icon iconfont icon-monitor"></i></Button>
                   </Tooltip>         
                 </FormItem>
                 <FormItem>

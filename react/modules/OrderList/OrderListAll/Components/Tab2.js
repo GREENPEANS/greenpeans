@@ -153,9 +153,6 @@ var Tab2 = React.createClass({
       title: '订单号',
       dataIndex: "orderNo",
     }, {
-      title: '回租期限(天)',
-      dataIndex: "stageCounts",
-    }, {
       title: '第几期',
       dataIndex: "stageNumber",
     }, {
@@ -183,7 +180,7 @@ var Tab2 = React.createClass({
       }
     }, {
       title: '还款日期',
-      dataIndex: "stagePaymentLastTime",
+      dataIndex: "payEndTime",
     }, {
       title: '是否逾期',
       dataIndex: "isOverdue",

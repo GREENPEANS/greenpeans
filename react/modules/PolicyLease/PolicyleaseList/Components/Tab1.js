@@ -56,12 +56,12 @@ var Tab1 = React.createClass({
               <Row>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="用户名：">
-                    <Input {...getFieldProps('orderNo', { initialValue: '' }) } disabled={props.canEdit} />
+                    <Input {...getFieldProps('userName', { initialValue: '' }) } disabled={props.canEdit} />
                   </FormItem>
                 </Col>
                 <Col span="8">
                   <FormItem {...formItemLayout} label="订单状态：">
-                    <Input {...getFieldProps('userName', { initialValue: '' }) } disabled={props.canEdit} />
+                    <Input {...getFieldProps('orderStatus', { initialValue: '' }) } disabled={props.canEdit} />
                   </FormItem>
                 </Col>  
                   

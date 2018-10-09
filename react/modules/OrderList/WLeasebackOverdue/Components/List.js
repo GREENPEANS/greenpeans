@@ -184,7 +184,7 @@ export default React.createClass({
         }
       }
     }, {
-      title: '付租期数(天)',
+      title: ' 回租期限(天)',
       dataIndex: 'loanTerm',
       // render: (text,record) =>{
       //   return record.loanTerm + '';

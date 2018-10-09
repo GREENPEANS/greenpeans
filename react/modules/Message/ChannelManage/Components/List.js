@@ -280,7 +280,7 @@ export default React.createClass({
             <div className="block-panel">
                 <div className="actionBtns" style={{ marginBottom: 16 }}>
                     <Tooltip placement="bottomLeft" title="新增优惠券" > 
-                        <Button onClick={this.showModal.bind(this,'新增',null,false)}><i className="icon iconfont icon-add"></i></Button>
+                        <Button onClick={this.showModal.bind(this,'新增',null,true)}><i className="icon iconfont icon-add"></i></Button>
                     </Tooltip>      
                 </div>
                 <Table columns={columns} rowKey={this.rowKey} size="middle"

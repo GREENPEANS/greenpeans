@@ -165,8 +165,10 @@ export default React.createClass({
             return <span className="nbtn normal">已处理</span>
           }else if (record.status == 2){
             return <span className="nbtn blacklist">已拒绝</span>
-          }else if (record.status == 0){
+          }else if (record.status == 3){
             return <span className="nbtn wrz">待处理</span>
+          }else if (record.status == 4){
+            return <span className="nbtn wrz">未回递</span>
           }else{
             return "-"
           }

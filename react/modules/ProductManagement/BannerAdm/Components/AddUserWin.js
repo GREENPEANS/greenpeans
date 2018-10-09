@@ -89,8 +89,7 @@ var AddUserWin = React.createClass({
     });
   },
   handleChange(info){   
-    if (info.file.status !== 'uploading') {   
-      console.log("uploading")          
+    if (info.file.status !== 'uploading') {            
       this.setState({
         imgPath:info.file.response.data
       });
@@ -99,7 +98,6 @@ var AddUserWin = React.createClass({
       this.setState({
         imgPath:info.file.response.data
       });
-      console.log("done")
       if(info.file.response.code == "200"){
         message.success(`${info.file.name} ${info.file.response.msg}`);
       }else {
@@ -174,6 +172,7 @@ var AddUserWin = React.createClass({
             </Row>
            
             <Row>
+               
                 <Col  span="12">
                   <FormItem {...formItemLayout} label="图片路径：">        
                   {this.state.imgPath == '' ? (<img src={this.state.fimhPath} style={{ width: 230 }} /> ) :
@@ -185,6 +184,11 @@ var AddUserWin = React.createClass({
                       </Button>
                     </Upload>
                   </FormItem>   
+                </Col>
+                <Col span="12">
+                    <FormItem {...formItemLayout} label="图片标题：">
+                      <Input {...getFieldProps('imgTitle', { initialValue: '' }) } disabled={props.canEdit} />
+                    </FormItem>
                 </Col>
             </Row> 
            

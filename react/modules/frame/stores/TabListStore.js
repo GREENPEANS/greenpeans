@@ -35,7 +35,8 @@ export default Reflux.createStore({
 					'PolicyOffer',
 					'WPolicyleaseOverdue',
 					'addUser',
-                	'OrderListAll',  //保单售后回租
+					'OrderListAll',  //保单售后回租
+					'OrderGiven', //回租授额
 					'ProductModification', //产品信息
 					'BannerAdm',
 					'LeaseAdmin',

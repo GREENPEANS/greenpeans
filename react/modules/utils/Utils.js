@@ -3,6 +3,7 @@ import {
 	Modal,
 	Notification
 } from 'antd';
+const baseUrl = 'http://192.168.16.16:8082';
 (function(win) {
 	Array.prototype.indexOf = function(val) {
 		for (var i = 0; i < this.length; i++) {
@@ -217,7 +218,7 @@ import {
 		},
 		sendForm: function(obj) {
 			reqwest({
-				url: obj.url,
+				url: baseUrl+obj.url,
 				method: obj.method || 'post',
 				data: obj.data,
 				headers: {
@@ -248,7 +249,7 @@ import {
 		//发送请求
 		sendAjax: function(obj) {
 			reqwest({
-				url: obj.url,
+				url: baseUrl+obj.url,
 				contentType: obj.contentType || 'application/json;charset=UTF-8',
 				method: obj.method || 'post',
 				data: obj.data,
@@ -276,7 +277,7 @@ import {
 		},
 		ajaxData: function(obj) {
 			reqwest({
-				url: 'http://192.168.16.16:8082'+obj.url,
+				url: baseUrl+obj.url,
 				method: obj.method || 'post',
 				headers:{
 					'Authorization':localStorage.getItem('sessionId')
@@ -314,7 +315,7 @@ import {
 		},
 		aajaxData: function(obj) {
 			reqwest({
-				url: 'http://192.168.16.16:8082'+obj.url,
+				url: baseUrl+obj.url,
 				method: obj.method || 'post',				
 				data: obj.data,
 				asyn: true,

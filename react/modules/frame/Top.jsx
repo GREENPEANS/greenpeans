@@ -37,7 +37,6 @@ const Top = React.createClass({
       url: '/system/user/logout.htm',
       contentType: 'application/x-www-form-urlencoded',
       callback:(result) =>{
-        console.log(result.code);
         if (result.code == 200) {
           localStorage.clear();
           location.reload();      

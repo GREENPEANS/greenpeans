@@ -53,6 +53,13 @@ export default React.createClass({
       title: title,
       record: record,
     }, () => {
+      if(record.registerClient == 1){
+        record.registerClient = "安卓";
+      }else if(record.registerClient == 0){
+        record.registerClient = "IOS";
+      }else{
+        record.registerClient = "暂无";
+      }
       this.refs.ReviewWin.refs.Tab1.setFieldsValue(record);
       this.setState({
         recordSoure: record
